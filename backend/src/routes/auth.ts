@@ -34,7 +34,7 @@ username,password:hashedPassword
 
 console.log(newUser)
 
-const token= jwt.sign({id:newUser._id},process.env.JWT_SECRET as string)
+const token= jwt.sign({userId:newUser._id},process.env.JWT_SECRET as string)
 return res.status(200).json({
 msg:"User created successfully",
 token

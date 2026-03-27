@@ -5,34 +5,42 @@ import User from '../models/userModel.js';
 import jwt from 'jsonwebtoken';
 const router = express.Router();
 router.post('/signup', async (req, res) => {
-    console.log("Body: ", req.body);
-    const userSchema = z.object({
-        username: z.string().min(3).max(10),
-        password: z.string().min(8).max(20)
-    });
-    const result = userSchema.safeParse(req.body);
-    if (!result.success) {
-        console.log(result.error);
-        return res.status(411).json({
-            msg: "Incorrect inputs"
+    try {
+        console.log("Body: ", req.body);
+        const userSchema = z.object({
+            username: z.string().min(3).max(10),
+            password: z.string().min(8).max(20)
+        });
+        const result = userSchema.safeParse(req.body);
+        if (!result.success) {
+            console.log(result.error);
+            return res.status(411).json({
+                msg: "Incorrect inputs"
+            });
+        }
+        const { username, password } = result.data;
+        const user = await User.findOne({ username });
+        console.log("User found: ", user);
+        if (user) {
+            return res.status(403).json({ msg: "User already exists" });
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = await User.create({
+            username, password: hashedPassword
+        });
+        console.log(newUser);
+        const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET);
+        return res.status(200).json({
+            msg: "User created successfully",
+            token
         });
     }
-    const { username, password } = result.data;
-    const user = await User.findOne({ username });
-    console.log("User found: ", user);
-    if (user) {
-        return res.status(403).json({ msg: "User already exists" });
+    catch (err) {
+        console.error(err);
+        return res.status(500).json({
+            msg: "Internal server error"
+        });
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await User.create({
-        username, password: hashedPassword
-    });
-    console.log(newUser);
-    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
-    return res.status(200).json({
-        msg: "User created successfully",
-        token
-    });
 });
 router.post('/signin', async (req, res) => {
     const signinSchema = z.object({
