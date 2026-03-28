@@ -4,15 +4,13 @@ import jwt from 'jsonwebtoken';
 // }
 export const authMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization;
-    console.log("Auth header: ", JSON.stringify(authHeader));
     if (authHeader && authHeader.startsWith("Bearer ")) {
         const parts = authHeader.split(' ');
         const token = parts[1];
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            console.log(decoded);
             //@ts-ignore
-            req.userId = decoded.id;
+            req.userId = decoded.userId;
             next();
         }
         catch (err) {

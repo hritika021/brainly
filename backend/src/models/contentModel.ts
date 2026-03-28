@@ -5,7 +5,7 @@ const contentSchema=new mongoose.Schema({
     type:{type:String, enum:contentTypes, required:true},
     title:{type:String,required:true},
     tags:[{type:mongoose.Types.ObjectId, ref:'Tag',required:true}],
-    userId:{type:mongoose.Types.ObjectId, ref:"User", required:true}
+    userId:{type:mongoose.Types.ObjectId, ref:'User', required:true}
 
 
 })

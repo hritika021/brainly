@@ -15,7 +15,7 @@ export const authMiddleware=(req:Request,res:Response,next:NextFunction)=>{
 
 
          //@ts-ignore
-        req.userId=decoded.id;
+        req.userId=decoded.userId;
         next();
 
         }catch(err){

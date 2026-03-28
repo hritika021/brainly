@@ -5,7 +5,9 @@ import { authMiddleware } from '../authMiddleware.js';
 const router=express.Router();
 
 router.post("/content",authMiddleware, async(req,res)=>{
-    console.log("Hit the content route")
+    console.log("Hit the content route");
+    //@ts-ignore
+    console.log("REQ.User.Id: ",req.userId)
 const link=req.body.link;
 const type=req.body.type;
 const title=req.body.title
@@ -23,12 +25,27 @@ return res.json({
 })
 
 
-router.get('/', async(req,res)=>{
+router.get('/content',authMiddleware, async(req,res)=>{
+    //@ts-ignore
+    const userId=req.userId;
+    const content=await Content.find({
+        userId:userId
+    }).populate("userId", "username")
+    res.json({
+        content
+    })
 
 })
 
-router.delete("/", async(req,res)=>{
+router.delete("/content/:id", authMiddleware,async(req,res)=>{
+const contentId=req.params.id
+console.log("Content ID to delete: ",contentId)
+await Content.deleteOne({
+_id:contentId,
+//@ts-ignore
+userId:req.userId
 
+})
 })
 
 router.post('/brain/share', async(req,res)=>{
