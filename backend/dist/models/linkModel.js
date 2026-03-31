@@ -4,7 +4,8 @@ const linkSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Types.ObjectId,
         ref: "User",
-        required: true
+        required: true,
+        unique: true
     }
 });
 const Link = mongoose.model("Link", linkSchema);
