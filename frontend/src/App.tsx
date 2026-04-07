@@ -1,20 +1,12 @@
-import React from "react"
-import { ButtonComp } from "./components/Button"
-import { PlusIcon } from "./icons/PlusIcon"
-import { ShareIcon } from "./icons/ShareIcon"
+
+import './App.css'
+
+import { Main } from './pages/Main'
 
 function App() {
- 
-
-  return (
-    <div>
-<div className="flex gap-6">
-  <ButtonComp variant='primary' size="md" onClick={()=>{}} text="Share your brain" startIcon={<ShareIcon/>} endIcon={"kasmdkbd"}/>
-<ButtonComp variant="secondary" size="md" onClick={()=>{}} text="Add Content" startIcon={<PlusIcon size="lg"/>} />
-</div>
-
-    </div>
-  )
+  return <div className='bg-gray-100 h-screen'>
+    <Main/>
+  </div>
 }
 
 export default App
