@@ -1,5 +1,5 @@
 import type { ReactElement } from "react"
-import { VideoIcon } from "../icons/YoutubeIcon"
+import { VideoIcon } from "../icons/VideoIcon"
 import { ShareIcon } from "../icons/ShareIcon"
 import { DeleteIcon } from "../icons/DeleteIcon"
 

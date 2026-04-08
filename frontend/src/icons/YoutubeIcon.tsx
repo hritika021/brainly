@@ -1,12 +1,10 @@
-export const VideoIcon=()=>{
-    return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className=" size-7  text-red-600"
-    >
-      <path d="M19.615 3.184A2.997 2.997 0 0 0 17.52 2.09C15.84 2 12 2 12 2s-3.84 0-5.52.09a2.997 2.997 0 0 0-2.095 1.094A31.38 31.38 0 0 0 4 12a31.38 31.38 0 0 0 .385 8.816 2.997 2.997 0 0 0 2.095 1.094C8.16 22 12 22 12 22s3.84 0 5.52-.09a2.997 2.997 0 0 0 2.095-1.094A31.38 31.38 0 0 0 20 12a31.38 31.38 0 0 0-.385-8.816zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
-    </svg>
-    )
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+export const YoutubeIcon=({className}:{className?:string})=>{
+
+return (
+   <div>
+     <FontAwesomeIcon icon={faYoutube} className={` ${className} text-gray-700 size-6`}/>
+   </div>
+)
 }

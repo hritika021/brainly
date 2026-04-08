@@ -12,7 +12,7 @@ const [open,setOpen]=useState(false)
     return (
         <div >
             <Sidebar className={'absolute'}/>
-        <div className="p-4 relative ml-48"> 
+        <div className="p-4 relative md:ml-48 min-h-screen"> 
           <div  className='flex gap-4 justify-end'> 
              <Button variant='primary' onClick={()=>{setOpen(true)}} text='Add Content' startIcon={<PlusIcon/>}/>
           <Button variant='secondary' onClick={()=>{}} text='Share Brain' startIcon={<ShareIcon className="size-6"/>}/>
