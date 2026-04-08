@@ -14,9 +14,10 @@ interface Card{
 
 
 export const Card=(props:Card)=>{
+  
     return (
         <div>
-        <div className="bg-white rounded-lg p-4 shadow shadow-md max-w-96 ml-12 mt-10 h-auto border border-slate-200">
+        <div className="bg-white rounded-lg p-4 shadow shadow-md max-w-72 min-h-48 ml-12 mt-10 h-auto border border-slate-200">
             <div className="flex justify-between items-center  gap-2  ">
                <div className="flex gap-2 items-center">
               <div className="text-slate-600 ">
@@ -54,8 +55,8 @@ export const Card=(props:Card)=>{
 }
 
    {props.type === "twitter" && (
-  <blockquote className="twitter-tweet">
-    <a href={props.link}></a>
+  <blockquote className="twitter-tweet ">
+    <a href={props.link.replace("x.com","twitter.com")}></a>
   </blockquote>
 )}
 </div>
