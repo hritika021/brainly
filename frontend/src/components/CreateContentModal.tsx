@@ -4,6 +4,11 @@ import { CrossIcon } from "../icons/CrossIcon";
 
 export const CreateContent=({open,onClose}:{open:boolean, onClose:()=>void})=>{
     if(!open) return null;
+
+    const handleCreate=()=>{
+        // Handle content creation logic here
+        
+    }
     return (
         <div className="z-50 fixed inset-0  flex items-center justify-center ">
         
@@ -36,7 +41,8 @@ export const CreateContent=({open,onClose}:{open:boolean, onClose:()=>void})=>{
 
             <div className="flex justify-end mt-4 gap-2">
                 <button className="border rounded-md p-[6px] border-[2px]" onClick={onClose}>Cancel</button>
-                <button className="bg-blue-800 text-white p-[6px] rounded-md">Add Content</button>
+                <button className="bg-blue-800 text-white p-[6px] rounded-md"
+                onClick={()=>{}}>Add Content</button>
 
             </div>
         </div>
