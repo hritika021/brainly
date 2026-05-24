@@ -20,6 +20,7 @@ router.post("/content", authMiddleware, async (req, res) => {
         userId: req.userId,
         tags: []
     });
+    //console.log(response)
     return res.json({
         msg: "Content added"
     });

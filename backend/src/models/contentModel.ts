@@ -1,5 +1,5 @@
 import mongoose, { Types } from "mongoose";
-const contentTypes=["image",'video','audio','article'];
+const contentTypes=["twitter","article","youtube"];
 const contentSchema=new mongoose.Schema({
     link:{type:String,required:true},
     type:{type:String, enum:contentTypes, required:true},

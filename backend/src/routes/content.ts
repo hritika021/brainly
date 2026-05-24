@@ -22,7 +22,9 @@ await Content.create({
     userId:req.userId,
     tags:[]
 })
+//console.log(response)
 return res.json({
+
     msg:"Content added"
 })
 })

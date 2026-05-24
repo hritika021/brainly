@@ -25,7 +25,7 @@ const [shareOpen,setShareOpen]=useState(false);
         <Card type="youtube" title="First Video" link="https://www.youtube.com/watch?v=ENmCaY5M3v4"/>
         </div>
                 {open && <CreateContent open={open} onClose={()=>setOpen(false)}/>}
-                    {shareOpen && <ShareBrain open={shareOpen} onClose={()=>setShareOpen(false)}/>}
+                    {shareOpen && <ShareBrain text="" open={shareOpen} onClose={()=>setShareOpen(false)}/>}
         </div>
         </div>
 

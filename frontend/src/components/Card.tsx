@@ -8,7 +8,7 @@ interface Card{
     link:string,
     startIcon?:ReactElement|string,
     endIcon?:ReactElement|string,
-    type:"twitter"|"youtube"
+    type:"twitter"|"youtube"|"article"
 
 }
 
