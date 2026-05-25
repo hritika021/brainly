@@ -18,8 +18,8 @@ export const Card=(props:Card)=>{
     return (
         <div>
         <div className="bg-white rounded-lg p-4 shadow shadow-md max-w-72 min-h-48 ml-12 mt-10 h-auto border border-slate-200">
-            <div className="flex justify-between items-center  gap-2  ">
-               <div className="flex gap-2 items-center">
+            <div className="flex flex-col-4 justify-between items-center  gap-2  ">
+               <div className="flex gap-2  items-center">
               <div className="text-slate-600 ">
              {props.type==="youtube" && <VideoIcon/>}
               </div>
@@ -54,6 +54,15 @@ export const Card=(props:Card)=>{
   />
 }
 
+  {props.type === "article" && (
+      <a
+         href={props.link}
+         target="_blank"
+         className="text-blue-500 underline"
+      >
+         Open Article
+      </a>
+   )}
    {props.type === "twitter" && (
   <blockquote className="twitter-tweet ">
     <a href={props.link.replace("x.com","twitter.com")}></a>
