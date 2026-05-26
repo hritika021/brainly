@@ -23,7 +23,7 @@ const content=useContent();
           <Button variant='secondary' onClick={()=>{setShareOpen(true)}} text='Share Brain' startIcon={<ShareIcon className="size-6"/>}/>
         </div>
    
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 items-start">
 
           {content.map(({type,link,title}) => {
     return (

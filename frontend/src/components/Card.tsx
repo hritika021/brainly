@@ -1,7 +1,8 @@
 import type { ReactElement } from "react"
 import { VideoIcon } from "../icons/VideoIcon"
-import { ShareIcon } from "../icons/ShareIcon"
 import { DeleteIcon } from "../icons/DeleteIcon"
+import { BACKEND_URL } from "../config"
+import axios from "axios"
 
 interface Card{
     title:string,
@@ -14,10 +15,21 @@ interface Card{
 
 
 export const Card=(props:Card)=>{
-  
+  async function handleDelete(){
+    // Delete logic here
+    await axios.delete(BACKEND_URL+`/content/content/}`,{
+    headers:{
+      "Authorization":`Bearer ${localStorage.getItem("token")}`
+    }
+    }
+    )
+    
+
+  }
+
     return (
         <div>
-        <div className="bg-white rounded-lg p-4 shadow shadow-md max-w-72 min-h-48 ml-12 mt-10 h-auto border border-slate-200">
+        <div className="bg-white rounded-lg p-4 flex flex-col shadow shadow-md max-w-72 h-[400px] ml-12 mt-10 h-auto border border-slate-200">
             <div className="flex flex-col-4 justify-between items-center  gap-2  ">
                <div className="flex gap-2  items-center">
               <div className="text-slate-600 ">
@@ -28,24 +40,13 @@ export const Card=(props:Card)=>{
 </span>
                  </div>
                           
-              <div className="flex items-center">
-            <div className="pr-2 text-slate-600">
-                <a href={props.link} target="_blank" >
-                <ShareIcon className="text-slate-600"/>
-                </a>
-            </div>
-             <div className="pr-2 text-slate-600">
-                 <DeleteIcon className="size-5 text-slate-600 cursor-pointer hover:text-slate-700"/>
-             </div>
-       
-          
-                      </div>
+             
                </div>
           
-<div className="pt-4">
+<div className="pt-1 rounded-lg">
    {props.type === "youtube" && 
   <iframe
-    className="w-full aspect-video"
+    className="w-full h-[300px] rounded-lg"
     src={props.link
       .replace("youtu.be/", "youtube.com/embed/")
       .replace("watch?v=", "embed/")}
@@ -64,10 +65,26 @@ export const Card=(props:Card)=>{
       </a>
    )}
    {props.type === "twitter" && (
-  <blockquote className="twitter-tweet ">
-    <a href={props.link.replace("x.com","twitter.com")}></a>
-  </blockquote>
+  
+     <div className="h-[300px] overflow-hidden rounded-md">
+
+      <div className="scale-[0.60] origin-top-left w-[160%]">
+
+         <blockquote className="twitter-tweet">
+            <a href={props.link.replace("x.com","twitter.com")}></a>
+         </blockquote>
+
+      </div>
+
+   </div>
 )}
+</div>
+
+<div className="flex mt-auto justify-end gap-2">
+  <button className="flex items-center text-sm gap-1 text-red-500 hover:text-red-700 bg-red-300/40 p-0.5 mt-2 rounded-sm font-semibold " onClick={handleDelete}>
+    <DeleteIcon className="size-3 text-red-500 hover:text-red-700" />
+Delete
+  </button>
 </div>
 
         </div>
