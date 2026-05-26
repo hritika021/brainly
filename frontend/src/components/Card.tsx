@@ -6,6 +6,8 @@ import axios from "axios"
 
 interface Card{
     title:string,
+    refresh:()=>void,
+    _id:string,
     link:string,
     startIcon?:ReactElement|string,
     endIcon?:ReactElement|string,
@@ -17,12 +19,14 @@ interface Card{
 export const Card=(props:Card)=>{
   async function handleDelete(){
     // Delete logic here
-    await axios.delete(BACKEND_URL+`/content/content/}`,{
+    await axios.delete(BACKEND_URL+`/content/content/${props._id}`,{
     headers:{
       "Authorization":`Bearer ${localStorage.getItem("token")}`
     }
     }
+    
     )
+    props.refresh();
     
 
   }
@@ -82,7 +86,7 @@ export const Card=(props:Card)=>{
 
 <div className="flex mt-auto justify-end gap-2">
   <button className="flex items-center text-sm gap-1 text-red-500 hover:text-red-700 bg-red-300/40 p-0.5 mt-2 rounded-sm font-semibold " onClick={handleDelete}>
-    <DeleteIcon className="size-3 text-red-500 hover:text-red-700" />
+    <DeleteIcon  className="size-3 text-red-500 hover:text-red-700" />
 Delete
   </button>
 </div>

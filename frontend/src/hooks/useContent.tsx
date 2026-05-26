@@ -4,17 +4,19 @@ import axios from "axios";
 
 export function useContent(){
     const [content,setContent]=useState([]);
-    useEffect(()=>{
-axios.get(BACKEND_URL+"/content/content",{
+    function refresh(){
+        axios.get(BACKEND_URL+"/content/content",{
             headers:{
             "Authorization":`Bearer ${localStorage.getItem("token")}`
             }
          }).then((response)=>{
             setContent(response.data.content);
-            }
-        )
+         })
+    }
+    useEffect(()=>{
+refresh();            
     },[])
 
-    return content; 
+    return {content,refresh}; 
 
 }

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { ToggleButton } from "./ToggleButton";
 
-export const ShareBrain=({open,onClose,text}:{text:string,open:boolean ,onClose:()=>void})=>{
+export const ShareBrain=({open,onClose,shareBrain,text}:{shareBrain:(share:boolean)=>Promise<string>,text:string,open:boolean ,onClose:()=>void})=>{
     const [shareEnabled,setShareEnabled]=useState(false);
+    const [shareLink,setShareLink]=useState("");
     if(!open) return null;
+
     return (
            <div className="z-50 fixed inset-0  flex items-center justify-center ">
                    <div className={`absolute fixed inset-0 w-screen h-screen bg-black/30 top-0 left-0 backdrop-blur-sm `} onClick={(onClose)}>
@@ -13,13 +15,24 @@ export const ShareBrain=({open,onClose,text}:{text:string,open:boolean ,onClose:
                <p className="text-gray-500 text-sm font-semibold">Anyone with the link can view your saved content</p>
                <div className="flex justify-between mt-6 font-semibold text-md ">
                 {shareEnabled? text="Share Enabled":text="Share Disabled"}
-              <ToggleButton enabled={shareEnabled} onClick={()=>setShareEnabled(!shareEnabled)}/>
+              <ToggleButton enabled={shareEnabled} onClick={async()=>{
+               const newState=!shareEnabled;
+               setShareEnabled(newState);
+               if(newState){
+                  const hash=await shareBrain(newState);
+                  const url=`${window.location.origin}/shared/${hash}`;
+                  setShareLink(url);
+               } else{
+               await shareBrain(false);
+               setShareLink("");
+               }
+              }}/>
 
 
                </div>
                {shareEnabled && <div className="mt-6 flex flex-col">
                 <label htmlFor="" className="font-semibold text-md">Share Link</label>
-                <input placeholder="Paste your link here" className="border border-2 rounded-sm p-[8px]"/>
+                <input value={shareLink} readOnly placeholder="Paste your link here" className="border border-2 rounded-sm p-[8px]"/>
                 </div>
                 }
                     <div className="flex justify-end">

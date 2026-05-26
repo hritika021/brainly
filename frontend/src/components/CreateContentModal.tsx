@@ -14,7 +14,7 @@ Article="article"
 }
 
 
-export const CreateContent=({open,onClose}:{open:boolean, onClose:()=>void})=>{
+export const  CreateContent=({open,onClose,refresh}:{refresh:()=>void,open:boolean, onClose:()=>void})=>{
 
     
     if(!open) return null;
@@ -23,6 +23,7 @@ const titleRef=useRef<HTMLInputElement>(null);
 const [error,setError]=useState("");
 
 const [type,setType]=useState(ContentType.Twitter);
+
 
     const handleCreateContent=async()=>{
         setError("")
@@ -45,6 +46,7 @@ const response=await axios.post(BACKEND_URL+"/content/content",{
 })
 
 console.log(response);
+refresh();
 onClose();
 
 }

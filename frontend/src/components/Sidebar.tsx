@@ -13,10 +13,10 @@ export const Sidebar=({className}:{className?:string})=>{
 return(
     <div>
 
-<div className="md:block hidden">
+<div className="md:block  hidden">
 
 </div>
-    {open && <div className={`h-screen hidden md:block   fixed border-r  absolute border-gray-300 shadow-sm bg-white w-[240px] left-0 top-0 p-4 ${className || ''}`}>
+    {open && <div className={`h-screen hidden md:block   fixed border-r   border-gray-300 shadow-sm bg-white w-[240px] left-0 top-0 p-4 ${className || ''}`}>
       
   <div className="flex text-2xl items-center gap-2 pt-2">
     <AcademicCap/>

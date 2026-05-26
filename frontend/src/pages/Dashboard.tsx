@@ -7,16 +7,32 @@ import { CreateContent } from "../components/CreateContentModal"
 import { Sidebar } from "../components/Sidebar"
 import { ShareBrain } from "../components/ShareBrain"
 import { useContent } from "../hooks/useContent"
+import axios from "axios"
+import { BACKEND_URL } from "../config"
 
 export const Dashboard=()=>{
 const [open,setOpen]=useState(false);
 const [shareOpen,setShareOpen]=useState(false);
-const content=useContent();
+const {content,refresh}=useContent();
 
+async function shareBrain(share:boolean){
+   try{ const response=await axios.post(BACKEND_URL+"/content/brain/share",{
+        share },{
+            headers:{
+                "Authorization":`Bearer ${localStorage.getItem("token")}`
+            }
+        })
+    console.log(response.data);
+    return response.data.hash;}
+
+    catch(err:any){
+        console.log(err.response?.data);
+    }
+}
     return (
 
         <div >
-            <Sidebar className={'absolute'}/>
+            <Sidebar className={''}/>
         <div className="p-4 relative md:ml-48 min-h-screen bg-gray-200"> 
           <div  className='flex gap-4 justify-end'> 
              <Button variant='primary' onClick={()=>{setOpen(true)}} text='Add Content' startIcon={<PlusIcon/>}/>
@@ -25,20 +41,21 @@ const content=useContent();
    
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 items-start">
 
-          {content.map(({type,link,title}) => {
+          {content.map(({type,link,title,_id}) => {
     return (
      <div >
-   <Card
+   <Card  _id={_id}
             type={type}
             link={link}
             title={title}
+            refresh={refresh}
         />     </div>
     )
 })}
      
       </div> 
-                {open && <CreateContent open={open} onClose={()=>setOpen(false)}/>}
-                    {shareOpen && <ShareBrain text="" open={shareOpen} onClose={()=>setShareOpen(false)}/>}
+                {open && <CreateContent refresh={refresh} open={open} onClose={()=>setOpen(false)}/>}
+                    {shareOpen && <ShareBrain shareBrain={shareBrain} text="" open={shareOpen} onClose={()=>setShareOpen(false)}/>}
         </div>
         </div>
 
