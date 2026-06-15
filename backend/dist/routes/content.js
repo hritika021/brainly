@@ -96,4 +96,28 @@ router.get('/brain/:shareLink', async (req, res) => {
         username: user?.username
     });
 });
+
+
+router.get("/search",authMiddleware,async(req,res)=>{
+    const filter=req.query.filter;
+    const userId=req.userId;
+    const content=await Content.find({
+        userId:userId,
+$or:[
+    {title:{$regex:filter,$options:"i"}},
+    {type:{$regex:filter,$options:"i"}}
+]
+    })
+    res.json({
+    content:content.map(item=>{
+        return {
+            title:item.title,
+            type:item.type,
+            link:item.link
+        }
+    })
+})
+})
+
+
 export default router;

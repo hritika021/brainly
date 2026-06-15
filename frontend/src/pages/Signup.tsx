@@ -29,13 +29,14 @@ async function handleSignup(){
         return;
     }
 try{
-     await axios.post(BACKEND_URL +"/api/v1/auth/signup",{
+     const response=await axios.post(BACKEND_URL +"/auth/signup",{
     
             username,
             password
     
     })
-    alert("Signup successful!")
+    localStorage.setItem("token",response.data.token)
+ 
     navigate("/")
 }
 catch(err:any){

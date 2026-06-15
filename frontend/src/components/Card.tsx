@@ -1,4 +1,4 @@
-import type { ReactElement } from "react"
+import { useEffect, type ReactElement } from "react"
 import { VideoIcon } from "../icons/VideoIcon"
 import { DeleteIcon } from "../icons/DeleteIcon"
 import { BACKEND_URL } from "../config"
@@ -17,6 +17,17 @@ interface Card{
 
 
 export const Card=(props:Card)=>{
+  useEffect(() => {
+
+      //@ts-ignore
+      if(window.twttr){
+
+         //@ts-ignore
+         window.twttr.widgets.load();
+
+      }
+
+   }, []);
   async function handleDelete(){
     // Delete logic here
     await axios.delete(BACKEND_URL+`/content/content/${props._id}`,{

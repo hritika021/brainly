@@ -2,15 +2,20 @@ import type { ReactElement } from "react";
 
 interface SideBarItemProps{
 icon:ReactElement|string,
+onClick:()=>void
 text:string
 
 }
 
 export function SideBarItem(props:SideBarItemProps){
     return (
-        <div className="flex items-center gap-2 cursor-pointer hover:bg-gray-200 rounded-md p-2 transition-all duration-200">
-            {props.icon} {props.text}
-        </div>
+       <button  className="flex items-center gap-3 rounded-md px-4 py-3 hover:bg-gray-200" onClick={props.onClick}>
+   <div className="w-5 flex justify-center">
+      {props.icon}
+   </div>
+
+   <span>{props.text}</span>
+</button>
     )
 
 }

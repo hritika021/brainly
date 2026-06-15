@@ -43,7 +43,7 @@ async function shareBrain(share:boolean){
 
           {content.map(({type,link,title,_id}) => {
     return (
-     <div >
+     <div key={_id} >
    <Card  _id={_id}
             type={type}
             link={link}
