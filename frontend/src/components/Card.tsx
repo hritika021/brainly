@@ -44,8 +44,8 @@ export const Card=(props:Card)=>{
 
     return (
         <div>
-        <div className="bg-white rounded-lg p-4 flex flex-col shadow shadow-md max-w-72 h-[400px] ml-12 mt-10 h-auto border border-slate-200">
-            <div className="flex flex-col-4 justify-between items-center  gap-2  ">
+        <div className="w-[250px] bg-white rounded-lg p-4 flex flex-col shadow shadow-md max-w-72 h-[400px]  ml-8 mt-10 border border-slate-200">
+            <div className="justify-between items-center  gap-2  ">
                <div className="flex gap-2  items-center">
               <div className="text-slate-600 ">
              {props.type==="youtube" && <VideoIcon/>}

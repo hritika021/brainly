@@ -14,7 +14,9 @@ import { Search } from './components/SearchBar'
     <Route path="/" element={<Dashboard/>} />
     <Route path='/signup' element={<Signup/>}/>
     <Route path='/signin' element={<Signin/>}/>
-    <Route path='/search' element={<Search/>}/>
+    <Route path='/search' element={
+      
+      <Search/>}/>
     </Routes></BrowserRouter>
     </div>
 }

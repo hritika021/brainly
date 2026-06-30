@@ -39,17 +39,17 @@ async function shareBrain(share:boolean){
           <Button variant='secondary' onClick={()=>{setShareOpen(true)}} text='Share Brain' startIcon={<ShareIcon className="size-6"/>}/>
         </div>
    
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 items-start">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1  items-start">
 
           {content.map(({type,link,title,_id}) => {
     return (
-     <div key={_id} >
+  
    <Card  _id={_id}
             type={type}
             link={link}
             title={title}
             refresh={refresh}
-        />     </div>
+        />     
     )
 })}
      
