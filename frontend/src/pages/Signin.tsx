@@ -8,6 +8,7 @@ import axios from "axios";
 import { BACKEND_URL } from "../config";
 
 export const Signin=()=>{
+    const [loading,setLoading]=useState(false);
     const usernameRef=useRef<any>(null);
 const passwordRef=useRef<any>(null);
 const [error,setError]=useState("");
@@ -27,6 +28,7 @@ async function handleSignin(){
         return;
     }
    try{
+    setLoading(true);
     const response= await axios.post(BACKEND_URL +"/auth/signin",{
             username,password
     })
@@ -43,7 +45,9 @@ console.log("username",username,"password",password)
         console.log(err.response.data.msg)
         setError(err.response?.data?.msg || "Something went wrong")
     }
-    
+    finally{
+        setLoading(false);
+    }
 
 }
 const navigate=useNavigate();
@@ -66,9 +70,9 @@ const navigate=useNavigate();
                    <Input ref={passwordRef} type="password" placeholder="•••••••"  label="Password"/>
               <div className="text-sm text-gray-700">Minimum 6 characters</div>
 
-<button onClick={handleSignin} className="bg-black text-white w-full  mt-5 rounded-md p-2">Sign in</button>
+<button onClick={handleSignin} className={`${loading?"bg-gray-200":""} bg-black text-white w-full  mt-5 rounded-md p-2`}>Sign in</button>
 <span className="text-gray-700 flex justify-center mt-3">New here?
-    <a href="/signup" className="text-blue-500 hover:underline ml-1"> Sign up</a></span>
+    <a href="/signup" className="text-blue-500 hover:underline ml-1"> {loading ? "Signing in..." : "Sign up"}</a></span>
                </div>
                
        

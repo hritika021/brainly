@@ -4,6 +4,7 @@ import { CrossIcon } from "../icons/CrossIcon";
 import { useRef,useState } from "react";
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 
 enum ContentType {
@@ -15,7 +16,7 @@ Article="article"
 
 
 export const  CreateContent=({open,onClose,refresh}:{refresh:()=>void,open:boolean, onClose:()=>void})=>{
-
+const [addContentLoading,setAddContentLoading]=useState(false);
     
     if(!open) return null;
 const linkRef=useRef<HTMLInputElement>(null);
@@ -27,7 +28,7 @@ const [type,setType]=useState(ContentType.Twitter);
 
     const handleCreateContent=async()=>{
         setError("")
-        // Handle content creation logic here
+        // Handling content creation logic here
 const link=linkRef.current?.value;
 const title=titleRef.current?.value;
 try{
@@ -37,6 +38,8 @@ try{
     return;
     
 }   
+setAddContentLoading(true);
+
 const response=await axios.post(BACKEND_URL+"/content/content",{
     link,type,title},
 {
@@ -44,7 +47,9 @@ const response=await axios.post(BACKEND_URL+"/content/content",{
 "Authorization":`Bearer ${localStorage.getItem("token")}`
    }
 })
-
+toast.success("Content added successfully!",{
+    duration:2000,
+})
 console.log(response);
 refresh();
 onClose();
@@ -52,9 +57,15 @@ onClose();
 }
     catch(err:any){
         console.log(err.response.data)
-
+        toast.error("Failed to add content.",{
+            duration:2000,
+        })
+        setError(err.response?.data?.msg || "Something went wrong")
 
         
+    }
+    finally{
+        setAddContentLoading(false);
     }
 }
 
@@ -92,9 +103,11 @@ const navigate=useNavigate();
             
 
             <div className="flex justify-end mt-4 gap-2">
-                <button className="border rounded-md p-[6px] border-[2px]" onClick={onClose}>Cancel</button>
-                <button className="bg-blue-800 text-white p-[6px] rounded-md"
-                onClick={handleCreateContent}>Add Content</button>
+                <button disabled={addContentLoading} className="border rounded-md p-[6px] border-[2px]" onClick={onClose}>Cancel</button>
+                <button className={`${addContentLoading?"bg-blue-200":"bg-blue-800"} text-white p-[6px] rounded-md`}
+                onClick={handleCreateContent} disabled={addContentLoading}>
+                    {addContentLoading ? "Adding..." : "Add Content"}
+                </button>
                 
 
             </div>

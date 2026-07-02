@@ -20,6 +20,7 @@ try{
 let response;
 
 if(type){
+    
 
 response=await axios.get(
 `${BACKEND_URL}/content/filter?type=${type}`,
@@ -91,7 +92,13 @@ No results found
 </div>
 )
 }
-
+{
+    type && content.length===0 && (
+        <div className="text-center mt-10">
+            No results found for {type}
+        </div>
+    )
+}
 <div className="grid grid-cols-2 md:grid-cols-3">
 
 {content.map((item:any)=>(

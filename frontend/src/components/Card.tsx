@@ -1,7 +1,8 @@
-import { useEffect, type ReactElement } from "react"
+import { useEffect, useState, type ReactElement } from "react"
 import { VideoIcon } from "../icons/VideoIcon"
 import { DeleteIcon } from "../icons/DeleteIcon"
 import { BACKEND_URL } from "../config"
+import {toast} from "react-hot-toast"
 import axios from "axios"
 
 interface Card{
@@ -17,6 +18,7 @@ interface Card{
 
 
 export const Card=(props:Card)=>{
+  const [deleting,setDeleting]=useState(false);
   useEffect(() => {
 
       //@ts-ignore
@@ -30,17 +32,33 @@ export const Card=(props:Card)=>{
    }, []);
   async function handleDelete(){
     // Delete logic here
+    try{
+      setDeleting(true);
     await axios.delete(BACKEND_URL+`/content/content/${props._id}`,{
     headers:{
       "Authorization":`Bearer ${localStorage.getItem("token")}`
     }
     }
-    
     )
-    props.refresh();
-    
 
+    
+    toast.success("Content deleted successfully!",{
+      duration:2000,
+    })
+    props.refresh();
   }
+  catch(err:any){
+    console.log(err.response.data)
+    toast.error("Error deleting content!",{
+      duration:2000,
+    }
+   
+  )
+  }
+   finally{
+      setDeleting(false);
+    }
+}
 
     return (
         <div>
@@ -58,7 +76,7 @@ export const Card=(props:Card)=>{
              
                </div>
           
-<div className="pt-1 rounded-lg">
+<div className="mt-1 rounded-lg flex-1">
    {props.type === "youtube" && 
   <iframe
     className="w-full h-[300px] rounded-lg"
@@ -95,10 +113,10 @@ export const Card=(props:Card)=>{
 )}
 </div>
 
-<div className="flex mt-auto justify-end gap-2">
-  <button className="flex items-center text-sm gap-1 text-red-500 hover:text-red-700 bg-red-300/40 p-0.5 mt-2 rounded-sm font-semibold " onClick={handleDelete}>
-    <DeleteIcon  className="size-3 text-red-500 hover:text-red-700" />
-Delete
+<div className="flex mt-1 justify-end gap-2">
+  <button disabled={deleting} className="flex items-center text-sm gap-1 text-red-500 hover:text-red-700 bg-red-300/40 p-0.5 mt-2 rounded-sm font-semibold " onClick={handleDelete}>
+    <DeleteIcon  className="size-4 text-red-500 hover:text-red-700" />
+{deleting?"Deleting...":"Delete"}
   </button>
 </div>
 
