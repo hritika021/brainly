@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactElement } from "react"
 import { VideoIcon } from "../icons/VideoIcon"
 import { DeleteIcon } from "../icons/DeleteIcon"
 import { BACKEND_URL } from "../config"
+import {motion} from 'motion/react'
 import {toast} from "react-hot-toast"
 import axios from "axios"
 
@@ -62,7 +63,18 @@ export const Card=(props:Card)=>{
 
     return (
         <div>
-        <div className="w-[250px] bg-white rounded-lg p-4 flex flex-col shadow shadow-md max-w-72 h-[400px]  ml-8 mt-10 border border-slate-200">
+        <motion.div
+        whileHover={{scale:1.05,
+          y:-4,
+          boxShadow:"0px 15px 40px rgba(0,0,0,0.15)"
+         }}
+           transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 20
+    }}
+
+        animate={{}} className=" hover:cursor-pointer w-[250px] bg-white rounded-lg p-4 flex flex-col shadow shadow-md max-w-72 h-[400px]  ml-8 mt-10 border border-slate-200">
             <div className="justify-between items-center  gap-2  ">
                <div className="flex gap-2  items-center">
               <div className="text-slate-600 ">
@@ -114,13 +126,24 @@ export const Card=(props:Card)=>{
 </div>
 
 <div className="flex mt-1 justify-end gap-2">
-  <button disabled={deleting} className="flex items-center text-sm gap-1 text-red-500 hover:text-red-700 bg-red-300/40 p-0.5 mt-2 rounded-sm font-semibold " onClick={handleDelete}>
-    <DeleteIcon  className="size-4 text-red-500 hover:text-red-700" />
+  <motion.button
+  whileHover={{scale:1.04,
+    backgroundColor:"rgba(248,113,113,0.2)",
+  }}
+
+    whileTap={{
+        scale: 0.96
+    }}
+    transition={{
+        duration: 0.15
+    }}
+  disabled={deleting} className="group flex items-center text-sm gap-1 text-red-500 hover: bg-red-300/40 py-[4px] px-1 mt-2 rounded-sm font-semibold " onClick={handleDelete}>
+    <DeleteIcon  className="size-4 text-red-500 " />
 {deleting?"Deleting...":"Delete"}
-  </button>
+  </motion.button>
 </div>
 
-        </div>
+        </motion.div>
             
             </div>
 

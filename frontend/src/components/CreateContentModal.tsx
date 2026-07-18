@@ -5,6 +5,8 @@ import { useRef,useState } from "react";
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import {motion,AnimatePresence} from "motion/react"
+import {Loader2} from "lucide-react"
 
 
 enum ContentType {
@@ -39,7 +41,7 @@ try{
     
 }   
 setAddContentLoading(true);
-
+// await new Promise((resolve)=>setTimeout(resolve,10000));
 const response=await axios.post(BACKEND_URL+"/content/content",{
     link,type,title},
 {
@@ -73,9 +75,29 @@ const navigate=useNavigate();
     return (
         <div className="z-50 fixed inset-0  flex items-center justify-center ">
         
-        <div className={`absolute fixed inset-0 w-screen h-screen bg-black/30 top-0 left-0 backdrop-blur-sm `} onClick={(onClose)}>
-            </div>
-        <div className="relative bg-white rounded-md shadow-lg w-[420px] p-[26px]">
+        <motion.div initial={{opacity:0}}
+        animate={{opacity:1}}
+        exit={{opacity:0}} className={`absolute fixed inset-0 w-screen h-screen bg-black/30 top-0 left-0 backdrop-blur-sm `} onClick={(onClose)}>
+            </motion.div>
+
+        <motion.div
+        initial={{
+            scale:0.9,
+            opacity:0,
+            y:20
+        }}
+
+        animate={{
+            scale:1,
+            opacity:1,
+            y:0
+        }}
+        exit={{
+            scale:0.95,
+            opacity:0,
+            y:10
+        }}
+        className="relative bg-white rounded-md shadow-lg w-[420px] p-[26px]">
         <CrossIcon onClick={onClose}/>
             
                 <h2 className="font-semibold text-xl">Add New Content</h2>
@@ -104,14 +126,33 @@ const navigate=useNavigate();
 
             <div className="flex justify-end mt-4 gap-2">
                 <button disabled={addContentLoading} className="border rounded-md p-[6px] border-[2px]" onClick={onClose}>Cancel</button>
-                <button className={`${addContentLoading?"bg-blue-200":"bg-blue-800"} text-white p-[6px] rounded-md`}
+                <motion.button whileHover={{
+                    scale:addContentLoading?1:1.03,
+                           backgroundColor: "#234fc6", 
+                    boxShadow:"0 10px 15px rgba(0,0,0,0.15) "
+                }}
+                  whileTap={{
+        scale: 0.97
+    }}
+    transition={{
+        duration: 0.18,
+        ease: "easeOut"
+    }}
+                className={`${addContentLoading?"bg-blue-200":"bg-blue-800"} text-white p-[6px] rounded-md`}
                 onClick={handleCreateContent} disabled={addContentLoading}>
-                    {addContentLoading ? "Adding..." : "Add Content"}
-                </button>
+                 {addContentLoading ? (
+                    <div className="flex items-center gap-2">
+        <Loader2 className="w-4 h-4 animate-spin" />
+        <span>Adding...</span>
+    </div>
+) : (
+    "Add Content"
+                 )}
+                </motion.button>
                 
 
             </div>
-        </div>
+        </motion.div>
         
 
 

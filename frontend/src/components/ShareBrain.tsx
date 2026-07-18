@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ToggleButton } from "./ToggleButton";
+import { motion } from "motion/react";
 
 export const ShareBrain=({open,onClose,shareBrain,text}:{shareBrain:(share:boolean)=>Promise<string>,text:string,open:boolean ,onClose:()=>void})=>{
     const [shareEnabled,setShareEnabled]=useState(false);
@@ -36,9 +37,17 @@ export const ShareBrain=({open,onClose,shareBrain,text}:{shareBrain:(share:boole
                 </div>
                 }
                     <div className="flex justify-end">
-   <button onClick={onClose} className="mt-6 text-gray-800 text-sm font-medium border-2 rounded-md p-1 px-4">
+   <motion.button
+   whileHover={{
+    scale: 1.03
+}}
+
+whileTap={{
+    scale: 0.97
+}}
+    onClick={onClose} className="mt-6 text-gray-800 text-sm font-medium border-2 rounded-md p-1 px-4">
       Close
-   </button>
+   </motion.button>
 </div>
             </div>
         

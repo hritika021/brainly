@@ -2,6 +2,7 @@ import { Input } from "../components/Input"
 import { CrossIcon } from "../icons/CrossIcon"
 import { useRef, useState } from "react";
 import axios from "axios";
+import {motion} from 'motion/react'
 import {BACKEND_URL} from '../config'
 import { useNavigate } from "react-router-dom";
 export const Signup=()=>{
@@ -66,7 +67,13 @@ catch(err:any){
                    <Input type="password" placeholder="•••••••" ref={passwordRef} label="Password"/>
               <div className="text-sm text-gray-700">Minimum 6 characters</div>
 
-<button className="bg-black text-white hover:bg-gray-300 hover:text-black w-full  mt-5 rounded-md p-2" onClick={handleSignup}>Register</button>
+<motion.button whileHover={{
+    scale: 1.03
+}}
+
+whileTap={{
+    scale: 0.97
+}} className="bg-black text-white hover:bg-gray-300 hover:text-black w-full  mt-5 rounded-md p-2" onClick={handleSignup}>Register</motion.button>
 <span className="text-gray-700 flex justify-center mt-3 ">Already have an account?
     <a href="/signin" className="text-blue-500 hover:underline ml-1"> Sign in</a></span>
                </div>

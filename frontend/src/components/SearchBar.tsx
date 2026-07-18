@@ -34,7 +34,12 @@ Authorization:`Bearer ${localStorage.getItem("token")}`
 }else{
 
 if(!input.trim()){
-setContent([]);
+const response=await axios.get(`${BACKEND_URL}/content`,{
+    headers:{
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+    }
+})
+setContent(response.data.content)
 return;
 }
 
@@ -78,7 +83,7 @@ return(
 value={input}
 onChange={(e)=>setInput(e.target.value)}
 placeholder="Search by title..."
-className="mt-10 w-full p-[15px] border rounded-lg"
+className="mt-10  p-[15px] border rounded-lg"
 />
 )}
 

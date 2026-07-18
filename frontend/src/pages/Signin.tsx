@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import { motion } from "motion/react";
 
 export const Signin=()=>{
     const [loading,setLoading]=useState(false);
@@ -70,7 +71,13 @@ const navigate=useNavigate();
                    <Input ref={passwordRef} type="password" placeholder="•••••••"  label="Password"/>
               <div className="text-sm text-gray-700">Minimum 6 characters</div>
 
-<button onClick={handleSignin} className={`${loading?"bg-gray-200":""} bg-black text-white w-full  mt-5 rounded-md p-2`}>Sign in</button>
+<motion.button whileHover={{
+    scale: 1.03
+}}
+
+whileTap={{
+    scale: 0.97
+}} onClick={handleSignin} className={`${loading?"bg-gray-200":""} bg-black text-white w-full  mt-5 rounded-md p-2`}>Sign in </motion.button>
 <span className="text-gray-700 flex justify-center mt-3">New here?
     <a href="/signup" className="text-blue-500 hover:underline ml-1"> {loading ? "Signing in..." : "Sign up"}</a></span>
                </div>

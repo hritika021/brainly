@@ -1,3 +1,4 @@
+import { motion } from "motion/react"
 import type { ReactElement } from "react"
 
 interface Button{
@@ -5,7 +6,8 @@ interface Button{
     startIcon?:ReactElement|string,
     endIcon?:ReactElement|string,
     variant:"primary"|"secondary",
-    onClick:() => void 
+    onClick:() => void ,
+    className?:string
 
 }
 const variantStyles={
@@ -18,12 +20,23 @@ const defaultStyles="rounded-md px-3 py-2 flex items-center"
 export const Button=(props:Button)=>{
     
 return (
-   <button onClick={props.onClick} className={`${defaultStyles} ${variantStyles[props.variant]} gap-1 `}>
+   <motion.button 
+   transition={{
+    duration:0.18,
+ease:"easeOut"
+   }}
+   whileHover={{
+scale:1.03,
+boxShadow:"0px 0px 9px rgba(0,0,0,0.3)",
+   }}
+   whileTap={{scale:0.97}}
+
+   onClick={props.onClick} className={`${defaultStyles} ${variantStyles[props.variant]} gap-1 `}>
 
     {props.startIcon}
     {props.text}
   
-</button>
+</motion.button>
 )
 
 }
