@@ -73,7 +73,7 @@ onClose();
 
 const navigate=useNavigate();
     return (
-        <div className="z-50 fixed inset-0  flex items-center justify-center ">
+        <div className="z-50 fixed inset-0  flex items-center justify-center p-4 ">
         
         <motion.div initial={{opacity:0}}
         animate={{opacity:1}}
@@ -97,7 +97,7 @@ const navigate=useNavigate();
             opacity:0,
             y:10
         }}
-        className="relative bg-white rounded-md shadow-lg w-[420px] p-[26px]">
+        className="relative bg-white rounded-md shadow-lg w-full max-w-md p-[26px]">
         <CrossIcon onClick={onClose}/>
             
                 <h2 className="font-semibold text-xl">Add New Content</h2>

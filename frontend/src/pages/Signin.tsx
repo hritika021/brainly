@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { motion } from "motion/react";
+import toast from "react-hot-toast";
 
 export const Signin=()=>{
     const [loading,setLoading]=useState(false);
@@ -33,7 +34,9 @@ async function handleSignin(){
     const response= await axios.post(BACKEND_URL +"/auth/signin",{
             username,password
     })
-
+  toast.success("Logged in successfully!",{
+    duration:2000
+  })
     console.log(response.data)
 
 console.log("username",username,"password",password)
@@ -53,17 +56,17 @@ console.log("username",username,"password",password)
 }
 const navigate=useNavigate();
     return (
-         <div className="z-50 fixed inset-0  flex items-center justify-center ">
+         <div className="z-50 fixed inset-0  flex items-center justify-center p-8 ">
 {/*                
                <div className={`absolute fixed inset-0 w-screen h-screen bg-black/30 top-0 left-0 backdrop-blur-sm `} >
                    </div> */}
-               <div className=" bg-white rounded-md shadow-lg w-[410px] p-[22px]">
+               <div className=" bg-white rounded-xl shadow-lg w-full max-w-md p-5 sm:p-8">
                
                    
-                       <h2 className="font-semibold text-xl">Welcome back</h2>
-                       <p className="text-[13px] text-gray-700 ">Sign in to continue</p>
+                       <h2 className="font-semibold text-2xl">Welcome back</h2>
+                       <p className="text-[14px] text-gray-700 ">Sign in to continue</p>
                        {error && (
-                           <div className="text-sm text-red-500 mt-3 bg-red-100/60 border-red-300 p-1 rounded-sm font-semibold border">
+                           <div className="text-sm text-red-500 mt-6 bg-red-100/60 border-red-300 p-1 rounded-sm font-semibold border">
                                {error}
                            </div>
                        )}
@@ -78,7 +81,7 @@ const navigate=useNavigate();
 whileTap={{
     scale: 0.97
 }} onClick={handleSignin} className={`${loading?"bg-gray-200":""} bg-black text-white w-full  mt-5 rounded-md p-2`}>Sign in </motion.button>
-<span className="text-gray-700 flex justify-center mt-3">New here?
+<span className="text-gray-700 flex justify-center mt-4">New here?
     <a href="/signup" className="text-blue-500 hover:underline ml-1"> {loading ? "Signing in..." : "Sign up"}</a></span>
                </div>
                

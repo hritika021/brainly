@@ -7,37 +7,62 @@ import { YoutubeIcon } from "../icons/YoutubeIcon";
 import { TwitterIcon } from "../icons/TwitterIcon";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { AcademicCap } from "../icons/AcademicCap";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";
+import { Link } from "lucide-react";
 
-export const Sidebar=({className}:{className?:string})=>{
-   
+export const Sidebar=({className,onClose}:{className?:string, onClose:()=>void})=>{
+const location= useLocation();
+const params=new URLSearchParams(location.search);
+const type=params.get("type");
     const navigate=useNavigate();
     function handleLogout(){
         localStorage.removeItem("token");
         navigate('/signin')
     }
+
+  
 return(
     <div>
 
 
-    <div className={`h-screen flex flex-col  hidden md:flex   fixed border-r   border-gray-300 shadow-sm bg-white w-[240px] left-0 top-0  ${className || ''}`}>
+    <div className={`h-screen flex flex-col  flex   fixed border-r   border-gray-300 shadow-sm bg-white  w-[240px] left-0  top-0  ${className || ''}`}>
       
-  <div className="flex  text-2xl items-center gap-2 pt-2">
+  <div className="flex pl-3 text-2xl items-center gap-1 pt-4">
     <AcademicCap/>
     Brainly</div>
          <div className="flex-1 flex-col h-full flex">
             <div className=" pt-5 flex flex-col gap-1 ">
-            <SideBarItem onClick={()=>navigate('/')} icon={<HomeIcon />} text="All Content" />
+            <SideBarItem 
+            active={location.pathname==='/'}   onClick={()=>
+               {
+                navigate('/');
+                onClose?.()
+               }
+                
+            } icon={<HomeIcon />} text="All Content" />
 
-        <SideBarItem onClick={()=>navigate('/search?type=youtube')} icon={<YoutubeIcon className="flex items-center"/>} text="Youtube"   />
-        <SideBarItem onClick={()=>navigate("/search?type=twitter")} icon={<TwitterIcon/>} text="Twitter" />
+        <SideBarItem active={location.pathname==='/search' && type==="youtube"}  onClick={()=>{
+            navigate('/search?type=youtube')
+        onClose?.()}} icon={<YoutubeIcon className="flex items-center"/>} text="Youtube"   />
+        <SideBarItem
+        active={location.pathname==='/search' && type==="twitter"} onClick={()=>{
+            +
+            navigate("/search?type=twitter")
+            onClose()}} icon={<TwitterIcon/>} text="Twitter" />
+        <SideBarItem
+        active={location.pathname==='/article' && type==='article'} onClick={()=>{
+
+            navigate("/search?type=article")
+            onClose()}} icon={<Link/>} text="Articles" />
       
     </div>
-    <button onClick={handleLogout} className="hover:bg-gray-200 rounded-md px-4 py-3 mt-auto gap-1 flex items-center ">
-        <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
+    <button onClick={handleLogout} className="hover:bg-red-200 rounded-md px-4 py-3  gap-1 flex items-center text-red-600">
+        <span className="mx-3" >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6 text-red-600">
   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
 </svg>
+
 </span>Logout</button>
             </div>
     </div>

@@ -8,7 +8,7 @@ export function Search(){
 
 const [content,setContent]=useState([]);
 const [input,setInput]=useState("");
-
+const [loading,setLoading]=useState(false)
 const [searchParams]=useSearchParams();
 
 const type=searchParams.get("type");
@@ -16,7 +16,7 @@ const type=searchParams.get("type");
 async function refresh(){
 
 try{
-
+setLoading(true);
 let response;
 
 if(type){
@@ -59,6 +59,9 @@ setContent(response.data.content);
 }catch(err){
 console.log(err);
 }
+finally{
+    setLoading(false);
+}
 
 }
 
@@ -76,7 +79,7 @@ clearTimeout(timeout)
 
 return(
 
-<div className="bg-gray-100 min-h-screen p-5">
+<div className="bg-gray-100 min-h-screen px-6 py-6">
 
 {!type && (
 <input
@@ -88,7 +91,7 @@ className="mt-10  p-[15px] border rounded-lg"
 )}
 
 {
-input.trim() &&
+!loading && input.trim() &&
 content.length===0 &&
 !type &&
 (
@@ -98,26 +101,30 @@ No results found
 )
 }
 {
-    type && content.length===0 && (
+   !loading && type && content.length===0 && (
         <div className="text-center mt-10">
             No results found for {type}
         </div>
     )
 }
-<div className="grid grid-cols-2 md:grid-cols-3">
+<div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-5">
 
-{content.map((item:any)=>(
-
-<Card
-key={item._id}
-refresh={refresh}
-_id={item._id}
-title={item.title}
-type={item.type}
-link={item.link}
-/>
-
-))}
+{loading ? (
+    <div className="col-span-full flex justify-center items-center py-24">
+        <div className="h-10 w-10 border-4 border-gray-300 border-t-purple-600 rounded-full animate-spin" />
+    </div>
+) : (
+    content.map((item: any) => (
+        <Card
+            key={item._id}
+            refresh={refresh}
+            _id={item._id}
+            title={item.title}
+            type={item.type}
+            link={item.link}
+        />
+    ))
+)}
 
 </div>
 

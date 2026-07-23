@@ -15,7 +15,7 @@ const variantStyles={
     "secondary":"bg-purple-200 text-purple-600"
 }
 
-const defaultStyles="rounded-md whitespace-nowrap text-sm px-3  sm:px-2 md:px-4 md:px-2 h-10 flex items-center  "
+const defaultStyles="rounded-md whitespace-nowrap text-sm px-2  sm:px-2 md:px-4 md:px-2 h-10 flex items-center  "
 
 export const Button=(props:Button)=>{
     

@@ -4,7 +4,7 @@ import { Card } from "../components/Card"
 import { PlusIcon } from "../icons/PlusIcon"
 import { ShareIcon } from "../icons/ShareIcon"
 import { CreateContent } from "../components/CreateContentModal"
-import { Sidebar } from "../components/Sidebar"
+
 import { ShareBrain } from "../components/ShareBrain"
 import { useContent } from "../hooks/useContent"
 import axios from "axios"
@@ -111,8 +111,6 @@ useEffect(() => {
 }, [input, content]);
     return (
 
-        <div className="flex min-h-screen" >
-            <Sidebar />
             
         <div className="relative
 flex-1
@@ -120,11 +118,11 @@ min-h-screen
 bg-gray-200
 px-6
 py-6
-lg:ml-[200px] "> 
-          <div  className='flex flex-col-reverse md:flex-row md:items-center md:justify-between gap-4 mb-2 '> 
+ "> 
+          <div  className='flex flex-col-reverse md:flex-row md:items-center md:justify-between gap-4 mb-1 md:mb-2 '> 
 
             <input value={input} onChange={(e)=>setInput(e.target.value)} type="text" placeholder="🔍Search your content..." className="w-full  md:max-w-3xl px-3 py-[10px] mt-1 border rounded-lg bg-white outline-none focus:ring-2 focus:ring-purple-500" /> 
-            <div className="flex  justify-center md:justify-end gap-5 mr-2">
+            <div className="flex  justify-center md:justify-end gap-3 md:gap-5 mr-2">
                  <Button variant='primary' onClick={()=>{setOpen(true)}} text='Add Content' startIcon={<PlusIcon/>} className={""}/>
           <Button variant='secondary' onClick={()=>{setShareOpen(true)}} text='Share Brain' startIcon={<ShareIcon className="size-6"/>}/>
             </div>
@@ -189,7 +187,6 @@ layout
                 </AnimatePresence>
                     {shareOpen && <ShareBrain shareBrain={shareBrain} text="" open={shareOpen} onClose={()=>setShareOpen(false)}/>}
         </div>
-        </div>
-
+        
     )
 }

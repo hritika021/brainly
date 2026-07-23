@@ -48,11 +48,11 @@ catch(err:any){
 
 
     return (
-         <div className="z-50 fixed inset-0  flex items-center justify-center ">
+         <div className="z-50 fixed inset-0  flex items-center justify-center p-8 ">
 {/*                
                <div className={`absolute fixed inset-0 w-screen h-screen bg-black/30 top-0 left-0 backdrop-blur-sm `} >
                    </div> */}
-               <div className=" bg-white rounded-md shadow-lg w-[420px] p-[26px]">
+               <div className=" bg-white rounded-md shadow-lg w-[420px] p-5 sm:p-8">
                
                    
                        <h2 className="font-semibold text-xl">Join Brainly</h2>
@@ -74,8 +74,9 @@ catch(err:any){
 whileTap={{
     scale: 0.97
 }} className="bg-black text-white hover:bg-gray-300 hover:text-black w-full  mt-5 rounded-md p-2" onClick={handleSignup}>Register</motion.button>
-<span className="text-gray-700 flex justify-center mt-3 ">Already have an account?
-    <a href="/signin" className="text-blue-500 hover:underline ml-1"> Sign in</a></span>
+<span className="text-gray-700 flex-col items-center  flex sm:flex justify-center mt-4 ">
+    Already have an account?
+    <a href="/signin" className="text-blue-500 hover:underline ml-1 flex justify-center"> Sign in</a></span>
                </div>
                
        

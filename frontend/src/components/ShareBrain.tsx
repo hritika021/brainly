@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ToggleButton } from "./ToggleButton";
 import { motion } from "motion/react";
 import toast from "react-hot-toast";
+import { CopyIcon } from "lucide-react";
 
 export const ShareBrain=({open,onClose,shareBrain,text}:{shareBrain:(share:boolean)=>Promise<string>,text:string,open:boolean ,onClose:()=>void})=>{
     const [shareEnabled,setShareEnabled]=useState(false);
@@ -11,10 +12,11 @@ export const ShareBrain=({open,onClose,shareBrain,text}:{shareBrain:(share:boole
     async function handleCopy(){
         try{
             await navigator.clipboard.writeText(shareLink);
+            console.log(shareLink)
             setCopied(true);
             setTimeout(()=>{
 setCopied(false)
-            },1000)
+            },2000)
         
 
         }
@@ -27,14 +29,14 @@ setCopied(false)
     if(!open) return null;
 
     return (
-           <div className="z-50 fixed inset-0  flex items-center justify-center ">
+           <div className="z-50 fixed inset-0  flex items-center justify-center p-4">
                    <div className={`absolute fixed inset-0 w-screen h-screen bg-black/30 top-0 left-0 backdrop-blur-sm `} onClick={(onClose)}>
             </div>
-            <div className="bg-white relative rounded-md shadow-lg w-[350px] p-5 ">
+            <div className="bg-white relative rounded-md shadow-lg w-full md:w-[380px] p-5 ">
                <h1 className="font-semibold text-lg">Share your brain</h1>
                <p className="text-gray-500 text-sm font-semibold">Anyone with the link can view your saved content</p>
                <div className="flex justify-between mt-6 font-semibold text-md ">
-                {shareEnabled? text="Share Enabled":text="Share Disabled"}
+                {shareEnabled?"Share Enabled":"Share Disabled"}
               <ToggleButton enabled={shareEnabled} onClick={async()=>{
                const newState=!shareEnabled;
                setShareEnabled(newState);
@@ -52,9 +54,12 @@ setCopied(false)
                </div>
                {shareEnabled && <div className="mt-6 flex flex-col">
                 <label htmlFor="" className="font-semibold text-md">Share Link</label>
-              <div className="flex">
+              <div className="flex px-1 gap-2">
                   <input value={shareLink} readOnly placeholder="Paste your link here" className="border border-2 rounded-sm p-[8px] w-full"/>
-                  <div className="">
+                  <div className=" flex items-center">
+                  <button onClick={handleCopy} className="h-11 rounded-md w-auto font-semibold text-md px-3 bg-blue-600 flex justify-center text-white items-center">
+                    {copied?"Copied!":<CopyIcon/>}
+                  </button>
 
                     </div>
                 </div>
@@ -69,7 +74,7 @@ setCopied(false)
 whileTap={{
     scale: 0.97
 }}
-    onClick={onClose} className="mt-10 text-gray-800 text-sm font-medium border-2 rounded-md p-1 px-4">
+    onClick={onClose} className="mt-8 text-gray-800 text-sm font-medium border-2 w-full lg:w-auto rounded-md p-1 px-4">
       Close
    </motion.button>
 </div>
