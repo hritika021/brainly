@@ -169,7 +169,7 @@ layout
     
 
     
-   <Card  _id={_id} 
+   <Card isShare={true}  _id={_id} 
             type={type}
             link={link}
             title={title}

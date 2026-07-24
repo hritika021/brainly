@@ -16,6 +16,7 @@ interface Card{
     startIcon?:ReactElement|string,
     endIcon?:ReactElement|string,
     type:"twitter"|"youtube"|"article"
+    isShare:boolean
 
 }
 
@@ -79,7 +80,7 @@ export const Card=(props:Card)=>{
        }} 
       transition={{ type: "spring", stiffness: 300, damping: 20 }} 
       animate={{}} 
-      className={`${isTwitter ? "h-[400px]" : "h-auto sm:h-[420px]"} hover:cursor-pointer w-full bg-gray-50/50 rounded-lg p-4 flex flex-col shadow shadow-md h-[400px] ml-auto mt-8 border border-slate-200`}> 
+      className={`${isTwitter ? "h-[400px]" : "h-auto sm:h-[420px]"} hover:cursor-pointer w-full bg-white rounded-lg p-4 flex flex-col shadow shadow-md h-[400px] ml-auto mt-8 border border-slate-200`}> 
       <div className="justify-between items-center gap-2 "> 
         <div className="flex gap-2 items-center">
            <div className="text-slate-600 "> 
@@ -97,10 +98,10 @@ export const Card=(props:Card)=>{
                    title="YouTube video player" allowFullScreen /> }
 
                     {props.type === "article" && (
-                     <div className="bg-white  py-3 px-2 mt-2 mb-3">
+                     <div className="bg-[#ee92b2]  py-3 px-2 mt-2 mb-3 rounded-md">
 
                         <a href={props.link} target="_blank" 
-                       className="text-blue-500  " > Open Article </a> 
+                       className="text-[#1F2937]  " > Open Article </a> 
                       </div>
                      
                      )} 
@@ -122,11 +123,11 @@ export const Card=(props:Card)=>{
 
                                </div> 
                                <div className="flex mt-1 justify-end gap-2"> 
-                                <motion.button whileHover={{scale:1.04, backgroundColor:"rgba(248,113,113,0.2)", }} 
+                               { props.isShare && <motion.button whileHover={{scale:1.04, backgroundColor:"rgba(248,113,113,0.2)", }} 
                                 whileTap={{ scale: 0.96 }}
                                  transition={{ duration: 0.15 }} 
                                  disabled={deleting}
                                   className="group flex items-center text-sm gap-1 text-red-500 hover: bg-red-300/40 py-[4px] px-1 mt-2 rounded-sm font-semibold " onClick={handleDelete}>
                                      <DeleteIcon className="size-4 text-red-500 " /> 
-                                     {deleting?"Deleting...":"Delete"} </motion.button> 
+                                     {deleting?"Deleting...":"Delete"} </motion.button> }
                                      </div> </motion.div> </div> ) }

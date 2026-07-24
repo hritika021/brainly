@@ -116,6 +116,7 @@ No results found
 ) : (
     content.map((item: any) => (
         <Card
+        isShare={true}
             key={item._id}
             refresh={refresh}
             _id={item._id}
