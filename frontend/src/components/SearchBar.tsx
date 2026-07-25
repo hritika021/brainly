@@ -5,6 +5,10 @@ import { BACKEND_URL } from "../config";
 import { Card } from "./Card";
 import { Button } from "./Button";
 import { PlusIcon, ShareIcon } from "lucide-react";
+import { NoResult } from "./NoResult";
+import { stagger,motion, AnimatePresence } from "motion/react";
+import { ShareBrain } from "./ShareBrain";
+import { CreateContent } from "./CreateContentModal";
 
 export function Search(){
 
@@ -16,7 +20,32 @@ const [open,setOpen]=useState(false);
 const [shareOpen,setShareOpen]=useState(false)
 
 const type=searchParams.get("type");
+const showNoResults =
+    !loading &&
+    content.length === 0 &&
+    (input.trim() !== "" || type);
+    const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      delayChildren: stagger(0.1),
+    },
+  },
+};
 
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+    },
+  },
+};
 async function refresh(){
 
 try{
@@ -69,6 +98,22 @@ finally{
 
 }
 
+
+async function shareBrain(share:boolean){
+   try{ 
+    const response=await axios.post(BACKEND_URL+"/content/brain/share",{
+        share },{
+            headers:{
+                "Authorization":`Bearer ${localStorage.getItem("token")}`
+            }
+        })
+    console.log(response.data);
+    return response.data.hash;}
+
+    catch(err:any){
+        console.log(err.response?.data);
+    }
+}
 useEffect(()=>{
 
 const timeout=setTimeout(()=>{
@@ -97,31 +142,20 @@ className="mt-10  p-[15px] border rounded-lg"
 />
 )}
 
-{
-!loading && input.trim() &&
-content.length===0 &&
-!type &&
-(
-<div className="text-center mt-10">
-No results found
-</div>
-)
-}
-{
-   !loading && type && content.length===0 && (
-        <div className="text-center mt-10">
-            No results found for {type}
-        </div>
-    )
-}
-<div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-5">
+{showNoResults && ( <div className="mt-12 lg:36">
+        <NoResult />
+    </div>)}
+{!showNoResults &&(<motion.div variants={containerVariants} initial="hidden"
+    animate="show"
+className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-5">
 
 {loading ? (
     <div className="col-span-full flex justify-center items-center py-24">
         <div className="h-10 w-10 border-4 border-pink-200 border-t-[#dd5781] rounded-full animate-spin" />
     </div>
 ) : (
-    content.map((item: any) => (
+    <AnimatePresence mode="popLayout">
+       { content.map((item: any) => (
         <Card
         isShare={true}
             key={item._id}
@@ -131,11 +165,30 @@ No results found
             type={item.type}
             link={item.link}
         />
-    ))
+    ))}
+    </AnimatePresence>
 )}
 
-</div>
+</motion.div>)}
 
+<AnimatePresence>
+    {open && (
+        <CreateContent
+            refresh={refresh}
+            open={open}
+            onClose={() => setOpen(false)}
+        />
+    )}
+</AnimatePresence>
+
+{shareOpen && (
+    <ShareBrain
+        shareBrain={shareBrain}
+        text=""
+        open={shareOpen}
+        onClose={() => setShareOpen(false)}
+    />
+)}
 </div>
 
 )

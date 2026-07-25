@@ -32,10 +32,10 @@ setCopied(false)
            <div className="z-50 fixed inset-0  flex items-center justify-center p-4">
                    <div className={`absolute fixed inset-0 w-screen h-screen bg-black/30 top-0 left-0 backdrop-blur-sm `} onClick={(onClose)}>
             </div>
-            <div className="bg-white relative rounded-md shadow-lg w-full md:w-[380px] p-5 ">
-               <h1 className="font-semibold text-lg">Share your brain</h1>
-               <p className="text-gray-500 text-sm font-semibold">Anyone with the link can view your saved content</p>
-               <div className="flex justify-between mt-6 font-semibold text-md ">
+            <div className="bg-white relative rounded-md shadow-[0_10px_40px_rgba(236,72,153,0.15)]  w-full md:w-[380px] p-5 ">
+               <h1 className=" font-[Inter] font-semibold text-lg lg:text-xl">Share your <span className="text-[#dd5781] ">brain</span></h1>
+               <p className="text-gray-500 font-[Inter] text-sm font-semibold">Anyone with the link can view your saved content</p>
+               <div className="flex text-gray-800 justify-between mt-6 font-medium text-md ">
                 {shareEnabled?"Share Enabled":"Share Disabled"}
               <ToggleButton enabled={shareEnabled} onClick={async()=>{
                const newState=!shareEnabled;
@@ -53,11 +53,11 @@ setCopied(false)
 
                </div>
                {shareEnabled && <div className="mt-6 flex flex-col">
-                <label htmlFor="" className="font-semibold text-md">Share Link</label>
+                <label htmlFor="" className="font-medium text-sm text-gray-700 font-[Inter]">Share Link</label>
               <div className="flex px-1 gap-2">
                   <input value={shareLink} readOnly placeholder="Paste your link here" className="border border-2 rounded-sm p-[8px] w-full"/>
                   <div className=" flex items-center">
-                  <button onClick={handleCopy} className="h-11 rounded-md w-auto font-semibold text-md px-3 bg-blue-600 flex justify-center text-white items-center">
+                  <button onClick={handleCopy} className="h-11 rounded-md w-auto font-semibold text-md px-3 bg-[#dd5781] flex justify-center text-white items-center">
                     {copied?"Copied!":<CopyIcon/>}
                   </button>
 
@@ -74,7 +74,7 @@ setCopied(false)
 whileTap={{
     scale: 0.97
 }}
-    onClick={onClose} className="mt-8 text-gray-800 text-sm font-medium border-2 w-full lg:w-auto rounded-md p-1 px-4">
+    onClick={onClose} className="mt-8 text-gray-800 text-sm font-medium border-2 w-full lg:w-auto rounded-md font-[Inter] hover:bg-gray-50 py-1 px-4 lg:px-5 lg:py-2">
       Close
    </motion.button>
 </div>
