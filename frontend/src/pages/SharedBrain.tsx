@@ -9,11 +9,16 @@ import { YoutubeIcon } from "../icons/YoutubeIcon";
 import { TwitterIcon } from "../icons/TwitterIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import { FilterButton } from "../components/ShareButton";
+import type { Content } from "../components/content";
+import { AnimatePresence,motion } from "motion/react";
 
 export function SharedBrain(){
     const {hash}=useParams();
     const [username,setUsername]=useState("")
-    const [content,setContent]=useState([]);
+    const [content,setContent]=useState<Content[]>([]);
+    const [active,setActive]=useState("all");
+  
     //@ts-ignore
     const articles=content.filter(item=>item.type==="article").length;
     //@ts-ignore
@@ -38,8 +43,35 @@ setContent(response.data.content)}
         handleShare()
     },[])
    
-   
+   //@ts-ignore
+    const filteredContent= active==='all'?content:(content.filter((item)=>item.type===active))
 
+const containerVariants = {
+  hidden: {
+    opacity: 1,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.35,
+    },
+  },
+};
     return(
         <div className=' min-h-screen  bg-[#fdf7fa]'>
 <div className="flex flex-col items-center pt-5">
@@ -116,10 +148,57 @@ mt-2
   </div>
 </div>
 </div>
+
+
     </div>
-<div className="grid px-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-  {content.map((item:any)=>(
-    <Card 
+
+
+
+    <div className="flex px-2 mt-4 gap-2 md:gap-6">
+<FilterButton onClick={()=>{
+setActive('all')
+}} isActive={active==='all'} text="All"/>
+
+<FilterButton onClick={()=>{
+    setActive("youtube")
+
+}} isActive={active==='youtube'} text="Youtube"/>
+
+<FilterButton onClick={()=>{
+setActive('article')
+}} isActive={active==='article'} text="Article"/>
+
+<FilterButton onClick={()=>{
+    setActive("twitter")
+
+}} isActive={active==="twitter"} text="Twitter"/>
+
+
+
+</div>
+<AnimatePresence mode="popLayout">
+   {filteredContent.length===0
+    ?(
+  <div className="flex justify-center px-6 lg:px-8  pt-12">
+  <div className="w-full rounded-xl border-2 border-pink-200 bg-white py-10 text-center font-[Inter] ">
+    <h2 className="text-lg md:text-xl font-semibold text-gray-800">
+      No content found for this filter
+    </h2>
+    <p className="mt-2 text-sm md:text-base text-gray-500">
+      Try selecting a different filter.
+    </p>
+  </div>
+</div>
+    ):( <motion.div 
+key={active}
+  variants={containerVariants}
+ initial="hidden"   animate="visible" 
+    className="grid px-5 items-start grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+
+ {filteredContent.map((item)=>(
+   <motion.div key={item._id} variants={cardVariants} layout
+  >
+     <Card 
     isShare={false}
      key={item._id}
     title={item.title}
@@ -127,9 +206,13 @@ mt-2
     refresh={refresh}
     _id={item._id}
     type={item.type}/>
-  ))}
+   </motion.div>
+  ))} 
+</motion.div>)
+   }
+</AnimatePresence>
 </div>
-</div>
+
         </div>
     )
 }

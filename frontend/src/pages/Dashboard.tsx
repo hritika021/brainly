@@ -11,6 +11,7 @@ import axios from "axios"
 import { BACKEND_URL } from "../config"
 import { Skeleton } from "../components/Skeleton"
 import { AnimatePresence, motion, stagger } from "motion/react"
+import { DashBoardHero } from "../components/DashboardHero"
 
 export const Dashboard=()=>{
 const [open,setOpen]=useState(false);
@@ -19,6 +20,11 @@ const {content,refresh,loading}=useContent();
 const [input,setInput]=useState("");
 const [load,setLoading]=useState(false)
 const [filteredcontent,setFilteredContent]=useState(content);
+const username=localStorage.getItem("username")||"";
+const totalResources=content.length;
+const videos=content.filter((item:any)=>item.type==='youtube').length;
+const tweets=content.filter((item:any)=>item.type==='twitter').length;
+const article=content.filter((item:any)=>item.type==='article').length;
 
 const containerVariants={
     hidden:{
@@ -66,6 +72,7 @@ const response=await axios.get(`${BACKEND_URL}/content/search?filter=${input}`,
             }
             )
 console.log(response.data.content)
+
             setFilteredContent(response.data.content);
             return;
 } 
@@ -115,18 +122,21 @@ useEffect(() => {
         <div className="relative
 flex-1
 min-h-screen
-bg-gray-200
+bg-[#fdf7fa]
 px-6
 py-6
  "> 
           <div  className='flex flex-col-reverse md:flex-row md:items-center md:justify-between gap-4 mb-1 md:mb-2 '> 
 
-            <input value={input} onChange={(e)=>setInput(e.target.value)} type="text" placeholder="🔍Search your content..." className="w-full  md:max-w-3xl px-3 py-[10px] mt-1 border rounded-lg bg-white outline-none focus:ring-2 focus:ring-purple-500" /> 
+            <input value={input} onChange={(e)=>setInput(e.target.value)} type="text" placeholder="🔍︎ Search your content..." className="w-full  md:max-w-3xl border-pink-200 focus:ring-pink-300 px-3 py-[10px] mt-1 border rounded-lg bg-white outline-none focus:ring-2 " /> 
             <div className="flex  justify-center md:justify-end gap-3 md:gap-5 mr-2">
-                 <Button variant='primary' onClick={()=>{setOpen(true)}} text='Add Content' startIcon={<PlusIcon/>} className={""}/>
-          <Button variant='secondary' onClick={()=>{setShareOpen(true)}} text='Share Brain' startIcon={<ShareIcon className="size-6"/>}/>
+                 <Button  variant='primary' onClick={()=>{setOpen(true)}} text='Add Content' startIcon={<PlusIcon/>} className={""}/>
+          <Button variant='secondary' onClick={()=>{setShareOpen(true)}} text='Share Brain' startIcon={<ShareIcon className="size-4 md:font-medium"/>} className="gap-1"/>
             </div>
         </div>
+        <div className='mt-4 lg:mt-6'>
+    <DashBoardHero username={username} totalArticles={article} totalResources={totalResources} totalTweets={tweets} totalVideos={videos}/>
+</div>
    
         <motion.div 
         initial="hidden"
@@ -138,6 +148,7 @@ grid-cols-1
 sm:grid-cols-2
 lg:grid-cols-3
 xl:grid-cols-4
+items-start
 
 sm:gap-5
  ">

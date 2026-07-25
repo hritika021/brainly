@@ -80,13 +80,13 @@ export const Card=(props:Card)=>{
        }} 
       transition={{ type: "spring", stiffness: 300, damping: 20 }} 
       animate={{}} 
-      className={`${isTwitter ? "h-[400px]" : "h-auto sm:h-[420px]"} hover:cursor-pointer w-full bg-white rounded-lg p-4 flex flex-col shadow shadow-md h-[400px] ml-auto mt-8 border border-slate-200`}> 
+      className={`${isTwitter ? "h-[400px]" : "h-auto sm:h-[400px]"} hover:cursor-pointer w-full bg-white rounded-lg p-4 flex flex-col shadow shadow-md h-[400px] ml-auto mt-8 border border-pink-200`}> 
       <div className="justify-between items-center gap-2 "> 
         <div className="flex gap-2 items-center">
            <div className="text-slate-600 "> 
             {props.type==="youtube" && <VideoIcon/>} 
             </div>
-             <span className="text-lg line-clamp-2 font-semibold text-slate-800 pb-2"> 
+             <span className="text-lg line-clamp-2 font-[Inter] overflow-hidden font-semibold text-slate-800 pb-2"> 
               {props.title} </span> 
               </div>
                </div>
@@ -127,7 +127,7 @@ export const Card=(props:Card)=>{
                                 whileTap={{ scale: 0.96 }}
                                  transition={{ duration: 0.15 }} 
                                  disabled={deleting}
-                                  className="group flex items-center text-sm gap-1 text-red-500 hover: bg-red-300/40 py-[4px] px-1 mt-2 rounded-sm font-semibold " onClick={handleDelete}>
+                                  className="group font-[Inter] flex items-center text-sm gap-1 text-red-500 hover: bg-red-300/40 py-[4px] px-1 mt-2 rounded-sm font-semibold " onClick={handleDelete}>
                                      <DeleteIcon className="size-4 text-red-500 " /> 
                                      {deleting?"Deleting...":"Delete"} </motion.button> }
                                      </div> </motion.div> </div> ) }

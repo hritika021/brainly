@@ -4,7 +4,7 @@ export const YoutubeIcon=({className}:{className?:string})=>{
 
 return (
    <div>
-     <FontAwesomeIcon icon={faYoutube} className={` ${className} text-gray-700 size-5`}/>
+     <FontAwesomeIcon icon={faYoutube} className={` ${className} = size-5`}/>
    </div>
 )
 }

@@ -42,6 +42,7 @@ async function handleSignin(){
 console.log("username",username,"password",password)
    const jwt=response.data.token;
    localStorage.setItem("token",jwt);
+   localStorage.setItem("username",username)
    navigate("/");
    }
 

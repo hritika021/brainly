@@ -11,11 +11,11 @@ interface Button{
 
 }
 const variantStyles={
-    "primary":"bg-purple-600 text-white",
-    "secondary":"bg-purple-200 text-purple-600"
+    "primary":"bg-[#df5983] text-white hover:bg-pink-600",
+    "secondary":"bg-[#faf7f7] border-pink-300 border text-pink-600 hover:bg-pink-100"
 }
 
-const defaultStyles="rounded-md whitespace-nowrap text-sm px-2  sm:px-2 md:px-4 md:px-2 h-10 flex items-center  "
+const defaultStyles="rounded-md whitespace-nowrap text-sm px-2 font-[Inter] md:font-medium sm:px-2 md:px-4 md:px-2 h-10 flex items-center  "
 
 export const Button=(props:Button)=>{
     
