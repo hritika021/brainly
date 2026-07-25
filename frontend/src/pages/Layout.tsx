@@ -16,7 +16,7 @@ export function Layout(){
 
     <div className="hidden lg:block w-[240px] shrink-0" />
   
-            <div className="fixed top-2 left-0 md:top-[3px] md:left-[3px] lg:hidden w-8 rounded-md  items-center justify-center flex h-8 bg-[#dd5781] z-40 ">
+            <div className="fixed top-2 left-[1px] md:top-[3px] md:left-[3px] lg:hidden w-8 rounded-md  items-center justify-center flex h-8 bg-[#dd5781] z-40 ">
              <button className="text-white" onClick={()=>{
                 console.log(isOpen)
                 setOpen(!isOpen)

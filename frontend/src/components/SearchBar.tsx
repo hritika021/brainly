@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { BACKEND_URL } from "../config";
 import { Card } from "./Card";
+import { Button } from "./Button";
+import { PlusIcon, ShareIcon } from "lucide-react";
 
 export function Search(){
 
@@ -10,6 +12,8 @@ const [content,setContent]=useState([]);
 const [input,setInput]=useState("");
 const [loading,setLoading]=useState(false)
 const [searchParams]=useSearchParams();
+const [open,setOpen]=useState(false);
+const [shareOpen,setShareOpen]=useState(false)
 
 const type=searchParams.get("type");
 
@@ -79,8 +83,11 @@ clearTimeout(timeout)
 
 return(
 
-<div className="bg-gray-100 min-h-screen px-6 py-6">
-
+<div className="bg-[#fdf7fa] min-h-screen px-6 py-6">
+ <div className="flex  justify-center md:justify-end gap-3 md:gap-5 mr-2">
+                 <Button  variant='primary' onClick={()=>{setOpen(true)}} text='Add Content' startIcon={<PlusIcon/>} className={""}/>
+          <Button variant='secondary' onClick={()=>{setShareOpen(true)}} text='Share Brain' startIcon={<ShareIcon className="size-4 md:font-medium"/>} className="gap-1"/>
+            </div>
 {!type && (
 <input
 value={input}
@@ -111,7 +118,7 @@ No results found
 
 {loading ? (
     <div className="col-span-full flex justify-center items-center py-24">
-        <div className="h-10 w-10 border-4 border-gray-300 border-t-purple-600 rounded-full animate-spin" />
+        <div className="h-10 w-10 border-4 border-pink-200 border-t-[#dd5781] rounded-full animate-spin" />
     </div>
 ) : (
     content.map((item: any) => (

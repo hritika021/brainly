@@ -24,11 +24,11 @@ relative
 overflow-hidden
 rounded-3xl
 border border-pink-200
-shadow-md
+shadow-md lg:shadow-lg
 bg-gradient-to-r
-      from-[#FCE2EB]
-      via-[#FFF5F9]
-      to-[#FCE2EB]
+    from-[#FFF8FA]
+via-[#FCEBF2]
+to-[#F8DCE8]
       shadow-[0_10px_35px_rgba(236,72,153,0.08)]
 to-pink-50
 px-5   py-5 md:py-7
@@ -39,8 +39,8 @@ mt-2
 <div className="absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-rose-200/20 blur-3xl"></div>
 
 <div className="relative z-10 ">
-    <h1 className='font-[Inter] text-lg md:text-xl font-medium '>
-   Welcome back, {props.username}!👋
+    <h1 className='font-[Inter] text-lg md:text-xl lg:text-2xl font-medium '>
+   Welcome back, {props.username} 👋
 </h1>
 <p className='leading-snug tracking-tight hidden md:block pt-2 text-sm  font-medium text-[#535356]'>Your second brain for saving and organizing important content. </p>
 <h1></h1>

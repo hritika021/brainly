@@ -12,6 +12,7 @@ import { BACKEND_URL } from "../config"
 import { Skeleton } from "../components/Skeleton"
 import { AnimatePresence, motion, stagger } from "motion/react"
 import { DashBoardHero } from "../components/DashboardHero"
+import { EmptyState } from "../components/EmptyState"
 
 export const Dashboard=()=>{
 const [open,setOpen]=useState(false);
@@ -134,11 +135,17 @@ py-6
           <Button variant='secondary' onClick={()=>{setShareOpen(true)}} text='Share Brain' startIcon={<ShareIcon className="size-4 md:font-medium"/>} className="gap-1"/>
             </div>
         </div>
+      
+      {!loading && content.length===0 ?(
+        <EmptyState openModal={()=>{setOpen(true)}} />): (  
+            <>
         <div className='mt-4 lg:mt-6'>
     <DashBoardHero username={username} totalArticles={article} totalResources={totalResources} totalTweets={tweets} totalVideos={videos}/>
 </div>
    
-        <motion.div 
+
+
+      <motion.div 
         initial="hidden"
         animate="show"
         variants={containerVariants}
@@ -192,7 +199,8 @@ layout
             </AnimatePresence>
           )}
      
-      </motion.div> 
+      </motion.div>
+      </>)} 
              <AnimatePresence>
                    {open && <CreateContent refresh={refresh} open={open} onClose={()=>setOpen(false)}/>}
                 </AnimatePresence>
