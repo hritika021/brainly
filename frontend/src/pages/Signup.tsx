@@ -39,7 +39,7 @@ try{
     localStorage.setItem("token",response.data.token);
     localStorage.setItem("username",username)
  
-    navigate("/")
+    navigate("/dashboard")
 }
 catch(err:any){
     setError(err.response?.data?.msg || "Something went wrong"  )

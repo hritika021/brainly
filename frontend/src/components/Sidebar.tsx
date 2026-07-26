@@ -34,9 +34,9 @@ return(
          <div className="flex-1 flex-col h-full flex">
             <div className=" pt-7 flex flex-col gap-1 ">
             <SideBarItem 
-            active={location.pathname==='/'}   onClick={()=>
+            active={location.pathname==='/dashboard'}   onClick={()=>
                {
-                navigate('/');
+                navigate('/dashboard');
                 onClose?.()
                }
                 

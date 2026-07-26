@@ -43,7 +43,7 @@ console.log("username",username,"password",password)
    const jwt=response.data.token;
    localStorage.setItem("token",jwt);
    localStorage.setItem("username",username)
-   navigate("/");
+   navigate("/dashboard");
    }
 
     catch(err:any){

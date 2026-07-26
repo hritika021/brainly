@@ -6,6 +6,7 @@ import {motion} from 'motion/react'
 import {toast} from "react-hot-toast"
 import axios from "axios"
 import { useMediaQuery } from "react-responsive";
+import { ExternalLink } from "lucide-react"
 
 
 interface Card{
@@ -98,10 +99,10 @@ export const Card=(props:Card)=>{
                    title="YouTube video player" allowFullScreen /> }
 
                     {props.type === "article" && (
-                     <div className="bg-[#ee92b2]  py-3 px-2 mt-2 mb-3 rounded-md">
+                     <div className="hover:bg-[#FBCFE8] bg-[#FCE7F3]  py-3 px-2 mt-2 mb-3 rounded-md">
 
                         <a href={props.link} target="_blank" 
-                       className="text-[#1F2937]  " > Open Article </a> 
+                       className="text-[#BE185D] flex gap-2 font-[Inter] px-2 items-center" > Open Article <ExternalLink className="size-[18px]"/> </a> 
                       </div>
                      
                      )} 

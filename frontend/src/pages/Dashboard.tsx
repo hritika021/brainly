@@ -165,7 +165,7 @@ sm:gap-5
 <Skeleton key={index}/>
           )):load ? (
                 <div className="col-span-full flex justify-center items-center py-20">
-        <div className="h-10 w-10 border-4 border-gray-300 border-t-purple-600 rounded-full animate-spin" />
+        <div className="h-10 w-10 border-4 border-gray-300 border-t-[#dd5781] rounded-full animate-spin" />
     </div>
 
           ):(

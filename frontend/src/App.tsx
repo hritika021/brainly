@@ -9,14 +9,16 @@ import { Search } from './components/SearchBar'
 import {Toaster} from "react-hot-toast"
 import { Layout } from './pages/Layout'
 import { SharedBrain } from './pages/SharedBrain'
+import { Landing } from './pages/Landing'
 
   function App() {
-    return <div className='bg-gray-100 h-screen'>
+    return <div className='bg-transparent h-screen'>
       <Toaster position='top-center' />
   <BrowserRouter>
   <Routes>
+    <Route element={<Landing/>} path='/'/>
 <Route element={<Layout/>}>
-      <Route path="/" element={<Dashboard/>} />
+      <Route path="/dashboard" element={<Dashboard/>} />
         <Route path='/search' element={
       <Search/>}/>
 </Route>
