@@ -31,7 +31,7 @@ return (
  <h2 className="md:text-5xl text-4xl  font-semibold font-[Inter] text-slate-900 leading-tight">
             Simple steps,
             <br />
-            <span className="font-playfair italic text-[#dd5781]">
+            <span className="font-[Merriweather] italic text-[#dd5781]">
               powerful results.
             </span>
           </h2>

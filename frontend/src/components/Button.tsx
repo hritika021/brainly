@@ -2,13 +2,14 @@ import { motion } from "motion/react"
 import type { ReactElement } from "react"
 
 interface Button{
-    text:string,
+    text?:string,
     startIcon?:ReactElement|string,
     endIcon?:ReactElement|string,
     variant:"primary"|"secondary",
     onClick:() => void ,
-    className?:string
-
+    className?:string,
+    children?:React.ReactNode
+  size?: "sm" | "md" | "lg";
 }
 const variantStyles={
     "primary":"bg-[#df5983] text-white hover:bg-pink-600",
