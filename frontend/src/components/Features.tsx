@@ -54,7 +54,7 @@ export function Features() {
     >
       <div className="absolute left-1/2 top-24 h-[550px] w-[950px] -translate-x-1/2 rounded-full bg-pink-200/20 blur-[140px]" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
+      <div className="relative z-10 py-10 mx-auto max-w-7xl px-6">
         
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-5 text-sm py-4 font-semibold uppercase tracking-[0.25em] text-[#dd5781]">

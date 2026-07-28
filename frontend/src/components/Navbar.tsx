@@ -2,10 +2,16 @@ import { Link } from "react-router-dom";
 
 import { Brain } from "lucide-react";
 import { Button } from "./Button";
+import {animate, motion} from 'motion/react'
 
 export function Navbar() {
     return (
-    <header className="fixed top-5 left-0 right-0 z-50 px-4 ">
+    <motion.header
+    initial={{y:-20, opacity:0}}
+    animate={{y:0, opacity:1}}
+    
+    transition={{delay:0.4}}
+    className="fixed top-5 left-0 right-0 z-50 px-4 ">
          <div className="mx-auto max-w-7xl">
            <nav className=" rounded-full  z-50  border-pink-100 shadow-md bg-white/20 backdrop-blur-xl">
             <div className="mx-auto flex h-[70px] max-w-[1280px] items-center justify-between px-6 lg:px-10">
@@ -31,13 +37,11 @@ export function Navbar() {
                         How it Works
                     </a>
 
-                    <a href="#pricing" className="transition hover:text-[#dd5781]">
-                        Pricing
-                    </a>
-
                     <a href="#about" className="transition hover:text-[#dd5781]">
                         About
                     </a>
+
+                 
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -62,6 +66,6 @@ export function Navbar() {
             </div>
         </nav>
      </div>
-    </header>
+    </motion.header>
     );
 }

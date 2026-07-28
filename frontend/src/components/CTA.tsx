@@ -7,7 +7,7 @@ export function CTA() {
       <div className="absolute left-1/2 top-1/2 h-[500px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-pink-300/60 blur-[150px]" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6">
-        <div className="rounded-[40px] border border-pink-100 bg-white/80 backdrop-blur-xl px-8 py-20 shadow-[0_20px_60px_rgba(221,87,129,0.08)]">
+        <div className="rounded-[40px] border border-pink-100 bg-white/80 backdrop-blur-xl px-8 py-16 shadow-[0_20px_60px_rgba(221,87,129,0.08)]">
 
           <div className="text-center">
 

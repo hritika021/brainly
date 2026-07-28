@@ -20,7 +20,7 @@ const steps = [
   },
 ]
 return (
-  <section id="how-it-works "    className="relative overflow-hidden py-28 bg-[#FCFAFB]">
+  <section id="how-it-works"    className="relative overflow-hidden py-28 bg-[#FCFAFB]">
          <div className="absolute left-1/2 top-0 h-[420px] w-[850px] -translate-x-1/2 rounded-full bg-pink-200/20 blur-[130px]" />
 
       <div className="absolute left-10 top-48 h-32 w-32 rounded-full bg-pink-100/40 blur-[80px]" />

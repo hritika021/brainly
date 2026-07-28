@@ -8,7 +8,7 @@ interface FeatureProp{
 export const Feature=(props:FeatureProp)=>{
     return (
 
-  <div className="flex items-center gap-2">
+  <div className="flex items-center gap-2 ">
       <span className="text-[#dd5781]">{props.icon}</span>
       <span className="font-medium">{props.text}</span>
     </div>

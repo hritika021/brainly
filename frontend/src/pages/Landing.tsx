@@ -1,6 +1,7 @@
 
 import { CTA } from "../components/CTA";
 import { Features } from "../components/Features";
+import { Footer } from "../components/Footer";
 import { Hero } from "../components/Hero";
 import { HowItWorks } from "../components/HowItWorks";
 import { Navbar } from "../components/Navbar";
@@ -13,6 +14,7 @@ export function Landing(){
         <Features/>
         <HowItWorks/>
         <CTA/>
+        <Footer/>
     </div>
   )
 }

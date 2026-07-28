@@ -4,12 +4,45 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Feature } from "./Feature";
 import dashboard from '../assets/dashboard.png'  
-
+import {motion} from 'motion/react'
 
 export function Hero(){
+  const featureContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.32,
+    },
+  },
+};
+  
+const container = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+  const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y:35,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1.0,
+   ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
     return (
       
-  <section className="relative  overflow-hidden lg:pt-32 pt-24 pb-16">
+  <section id="about"className="relative  overflow-hidden lg:pt-32 pt-24 pb-16">
     
 <div className="absolute left-1/2 top-0 h-[650px] w-[900px] -translate-x-1/2 rounded-full bg-pink-200/20 blur-[130px]" />
 
@@ -41,71 +74,95 @@ export function Hero(){
         icon={<FontAwesomeIcon icon={faXTwitter} className="size-[34px] " />}
       />
 
-      <div className="relative z-10 mx-auto max-w-4xl px-6 flex flex-col items-center">
-  <div className="mx-auto mb-4 lg:mb-8 flex w-fit shadow-sm items-center gap-1 px-3 rounded-full border border-pink-100 bg-white/70  lg:px-5  py-3 mt-5 md:mt-6 backdrop-blur-xl">
+      <motion.div
+        variants={container}
+  initial="hidden"
+  animate="visible"
+      className="relative z-10 mx-auto max-w-4xl px-6 flex flex-col items-center">
+  <motion.div
+    variants={fadeUp}
+          className="mx-auto mb-4 lg:mb-8 flex w-fit shadow-sm items-center gap-1 px-3 rounded-full border border-pink-100 bg-white/70  lg:px-5  py-3 mt-5 md:mt-6 backdrop-blur-xl">
 
           <Sparkles
             className="text-[#dd5781]"
             size={16}
           />
-          <p className="text-[12px] lg:text-sm font-[Inter] font-medium text-[#dd5781]">
+          <p 
+       
+          className="text-[12px] lg:text-sm font-[Inter] font-medium text-[#dd5781]">
     Your Knowledge, Organized Beautifully
           </p>
 
-        </div>
-         <h1 className="mx-auto max-w-6xl lg:leading-[1.05] font-[Inter] text-center text-3xl font-bold leading-tight text-[#111827] md:text-5xl tracking-tight">
+        </motion.div>
+       <motion.h1
+  className="mx-auto max-w-6xl lg:leading-[1.05] font-[Inter] text-center text-3xl font-bold leading-tight text-[#111827] md:text-5xl tracking-tight"
+>
+  <motion.span
+    variants={fadeUp}
+    className="block"
+  >
+    Save it. Organize it.
+  </motion.span>
 
-          Save it. Organize it
+  <motion.span
+    variants={fadeUp}
+    className="block bg-gradient-to-r from-[#dd5781] to-pink-400 bg-clip-text text-transparent"
+  >
+    Never lose it.
+  </motion.span>
+</motion.h1>
 
-          <br />
-
-          <span className="bg-gradient-to-r from-[#dd5781] to-pink-400 bg-clip-text text-transparent">
-            Never lose it.
-          </span>
-
-        </h1>
-
-        <p className="mx-auto mt-3 max-w-3xl text-center text-sm md:px-32  font-[Inter] text-gray-500">
+        <motion.p
+        variants={fadeUp}
+        className="mx-auto mt-3 max-w-3xl text-center text-sm md:px-32  font-[Inter] text-gray-500">
 
           Brainly helps you collect, organize and revisit your
           favorite articles, tweets, videos and resources—
           all in one beautiful place.
 
-        </p>
+        </motion.p>
 
            <div className="mt-7 flex flex-col items-center justify-center gap-4 sm:flex-row">
 
-          <button className="flex items-center gap-3 rounded-2xl bg-[#dd5781]  px-6 md:px-8 py-3 md:py-[14px] text-lg font-semibold text-white shadow-[0_15px_35px_rgba(221,87,129,0.25)] transition hover:-translate-y-0.5 hover:bg-[#cc4e76]">
+          <motion.button 
+          variants={fadeUp}
+          className="flex items-center gap-3 rounded-2xl bg-[#dd5781]  px-6 md:px-8 py-3 md:py-[14px] text-lg font-semibold text-white shadow-[0_15px_35px_rgba(221,87,129,0.25)] transition hover:-translate-y-0.5 hover:bg-[#cc4e76]">
 
             Get Started
 
             <ArrowRight size={20} />
 
-          </button>
+          </motion.button>
 
-          <button className="rounded-2xl border border-pink-200 bg-white px-6 py-3 md:px-8 md:py-[14px] text-lg font-semibold text-gray-700 transition hover:bg-pink-50">
+          <motion.button variants={fadeUp} className="rounded-2xl border border-pink-200 bg-white px-6 py-3 md:px-8 md:py-[14px] text-lg font-semibold text-gray-700 transition hover:bg-pink-50">
             See Live Demo
-          </button>
+          </motion.button>
 
         </div>
-        <div className="mt-6 md:mt-7 flex flex-wrap items-center justify-center gap-2 md:gap-8 text-gray-600">
-      <Feature
+        <motion.div variants={featureContainer} className="mt-6 md:mt-7 flex flex-wrap items-center justify-center gap-2 md:gap-8 text-gray-600">
+    <motion.div variants={fadeUp}>
+        <Feature 
             icon={<CheckCircle size={18} />}
             text="Save Anything"
           />
+    </motion.div>
 
-          <Feature
+        <motion.div variants={fadeUp}>
+            <Feature
             icon={<FolderOpen size={18} />}
             text="Organize Effortlessly"
           />
+        </motion.div>
 
-          <Feature
+        <motion.div variants={fadeUp}>
+            <Feature
             icon={<Lock size={18} />}
             text="Access Anywhere"
           />
-        </div>
+        </motion.div>
+        </motion.div>
 
-      <div className="relative mx-auto mt-12 w-full max-w-full  md:max-w-[1150px] lg:max-w-[1250px]">
+      <motion.div variants={fadeUp} className="relative mx-auto mt-12 w-full max-w-full  md:max-w-[1150px] lg:max-w-[1250px]">
       <div
         className="
         absolute
@@ -134,13 +191,11 @@ export function Hero(){
         "
     ></div>
 <img src={dashboard} className="rounded-xl  w-full h-auto scale:110"/>
-  <div className="py-12">
 
-  </div>
 
-    </div>
+    </motion.div>
 
-</div>
+</motion.div>
      
   </section>
     )
