@@ -5,8 +5,10 @@ import { Button } from "./Button";
 
 export function Navbar() {
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 border-b border-pink-100 shadow-sm bg-white/20 backdrop-blur-xl">
-            <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
+    <header className="fixed top-5 left-0 right-0 z-50 px-4 ">
+         <div className="mx-auto max-w-7xl">
+           <nav className=" rounded-full  z-50  border-pink-100 shadow-md bg-white/20 backdrop-blur-xl">
+            <div className="mx-auto flex h-[70px] max-w-[1280px] items-center justify-between px-6 lg:px-10">
                 <Link to="/" className="flex items-center gap-1">
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-pink-50">
                         <Brain
@@ -38,7 +40,6 @@ export function Navbar() {
                     </a>
                 </div>
 
-                {/* Buttons */}
                 <div className="flex items-center gap-3">
 
                     <Link to="/signin">
@@ -60,5 +61,7 @@ export function Navbar() {
 
             </div>
         </nav>
+     </div>
+    </header>
     );
 }

@@ -1,4 +1,6 @@
+import { Features } from "../components/Features";
 import { Hero } from "../components/Hero";
+import { HowItWorks } from "../components/HowItWorks";
 import { Navbar } from "../components/Navbar";
 
 export function Landing(){
@@ -6,6 +8,8 @@ export function Landing(){
       <div className="min-h-screen bg-[#fef7f9] relative overflow-x-hidden">
         <Navbar/>
         <Hero/>
+        <Features/>
+        <HowItWorks/>
     </div>
   )
 }
