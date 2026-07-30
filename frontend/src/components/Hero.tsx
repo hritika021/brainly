@@ -6,27 +6,7 @@ import { Feature } from "./Feature";
 import dashboard from '../assets/dashboard.png'  
 import {motion} from 'motion/react'
 
-export function Hero(){
-  const featureContainer = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.32,
-    },
-  },
-};
-  
-const container = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-  const fadeUp = {
+  export const fadeUp = {
   hidden: {
     opacity: 0,
     y:35,
@@ -40,6 +20,29 @@ const container = {
     },
   },
 };
+
+export const container = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+  export const featureContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+export function Hero(){
+
+  
+
     return (
       
   <section id="about"className="relative  overflow-hidden lg:pt-32 pt-24 pb-16">

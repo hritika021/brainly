@@ -7,6 +7,9 @@ import {
   Share2,
 } from "lucide-react";
 
+import {motion} from 'motion/react'
+import { container, fadeUp, featureContainer } from "./Hero";
+
 const features = [
   {
     icon: FileText,
@@ -48,7 +51,12 @@ const features = [
 
 export function Features() {
   return (
-    <section
+    <motion.section 
+    initial="hidden"
+    whileInView="visible"
+    viewport={{once:true, amount:0.2}}
+    variants={container}
+
       id="features"
       className="relative overflow-hidden scroll-mt-28 "
     >
@@ -57,30 +65,32 @@ export function Features() {
       <div className="relative z-10 py-10 mx-auto max-w-7xl px-6">
         
         <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-5 text-sm py-4 font-semibold uppercase tracking-[0.25em] text-[#dd5781]">
+          <motion.p variants={fadeUp} className="mb-5 text-sm py-4 font-semibold uppercase tracking-[0.25em] text-[#dd5781]">
             FEATURES
-          </p>
+          </motion.p>
 
-          <h2 className="font-[Inter] text-5xl font-bold leading-tight text-gray-900 md:text-6xl">
+          <motion.h2 
+          
+          variants={fadeUp} className="font-[Inter] text-5xl font-bold leading-tight text-gray-900 md:text-6xl">
             Everything you need.
-          </h2>
+          </motion.h2>
 
-          <h2 className="mt-2 font-[Merriweather] text-5xl italic tracking-tight font-medium text-[#dd5781] md:text-6xl">
+          <motion.h2 variants={fadeUp} className="mt-2 font-[Merriweather] text-5xl italic tracking-tight font-medium text-[#dd5781] md:text-6xl">
             Nothing you don't.
-          </h2>
+          </motion.h2>
 
-          <p className="mx-auto mt-6 font-[Inter] max-w-xl text-md leading-8 text-gray-500">
+          <motion.p variants={fadeUp} className="mx-auto mt-6 font-[Inter] max-w-xl text-md leading-8 text-gray-500">
             Six thoughtful features that transform scattered links into a calm,
             searchable knowledge library.
-          </p>
+          </motion.p>
         </div>
 
-        <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div variants={featureContainer} className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => {
             const Icon = feature.icon;
 
             return (
-              <div key={index} className="group relative overflow-hidden rounded-[34px] border border-pink-100 bg-white/90 backdrop-blur-xl px-3 py-4 shadow-[0_10px_40px_rgba(221,87,129,0.08)]">
+              <motion.div variants={fadeUp} key={index} className="group relative overflow-hidden rounded-[34px] border border-pink-100 bg-white/90 backdrop-blur-xl px-3 py-4 shadow-[0_10px_40px_rgba(221,87,129,0.08)]">
 
     <div className="absolute -top-8 -right-8 h-40 w-40 rounded-full bg-pink-200/80 blur-[65px]" />
 
@@ -104,11 +114,11 @@ export function Features() {
                   {feature.description}
                 </p>
                 </div>
-              </div>
+              </motion.div>
             )
           })}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
