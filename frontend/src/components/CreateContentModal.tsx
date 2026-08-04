@@ -108,7 +108,7 @@ const navigate=useNavigate();
                     </div>
                 )}
               <p className="mt-4 font-[Inter] mb-1  text-gray-700 font-medium">Title</p>
-              <input type="text" ref={titleRef} placeholder="Enter a title for this content" className="border f border-gray-300 focus:border-pink-300 focus:outline-none border-2 focus:ring-2 focus:ring-pink-200  py-1 px-2 w-full rounded-md " />
+              <input type="text" ref={titleRef} placeholder="Enter a title for this content" className="border  border-gray-300 focus:border-pink-300 focus:outline-none border-2 focus:ring-2 focus:ring-pink-200  py-1 px-2 w-full rounded-md " />
                 
             
               <p className="mt-4 mb-1 font-[Inter] text-gray-700 font-medium">Link</p>

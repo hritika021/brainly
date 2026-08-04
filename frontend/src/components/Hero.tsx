@@ -5,6 +5,8 @@ import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Feature } from "./Feature";
 import dashboard from '../assets/dashboard.png'  
 import {motion} from 'motion/react'
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
   export const fadeUp = {
   hidden: {
@@ -40,9 +42,8 @@ export const container = {
   },
 };
 export function Hero(){
-
-  
-
+const {openSignin}=useAuth();
+const {openSignup}=useAuth()
     return (
       
   <section id="about"className="relative  overflow-hidden lg:pt-32 pt-24 pb-16">
@@ -125,9 +126,10 @@ export function Hero(){
 
         </motion.p>
 
-           <div className="mt-7 flex flex-col items-center justify-center gap-4 sm:flex-row">
+           <div className="mt-7 flex flex-col items-center justify-center  sm:flex-row">
 
           <motion.button 
+          onClick={openSignup}
           variants={fadeUp}
           className="flex items-center gap-3 rounded-2xl bg-[#dd5781]  px-6 md:px-8 py-3 md:py-[14px] text-lg font-semibold text-white shadow-[0_15px_35px_rgba(221,87,129,0.25)] transition hover:-translate-y-0.5 hover:bg-[#cc4e76]">
 
@@ -137,9 +139,7 @@ export function Hero(){
 
           </motion.button>
 
-          <motion.button variants={fadeUp} className="rounded-2xl border border-pink-200 bg-white px-6 py-3 md:px-8 md:py-[14px] text-lg font-semibold text-gray-700 transition hover:bg-pink-50">
-            See Live Demo
-          </motion.button>
+       
 
         </div>
         <motion.div variants={featureContainer} className="mt-6 md:mt-7 flex flex-wrap items-center justify-center gap-2 md:gap-8 text-gray-600">

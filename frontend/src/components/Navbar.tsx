@@ -4,7 +4,12 @@ import { Brain } from "lucide-react";
 import { Button } from "./Button";
 import {animate, motion} from 'motion/react'
 
+import { Signin } from "./Signin";
+import { useAuth } from "../context/AuthContext";
+
 export function Navbar() {
+const {openSignin}=useAuth();
+const {openSignup}=useAuth()
     return (
     <motion.header
     initial={{y:-20, opacity:0}}
@@ -46,25 +51,25 @@ export function Navbar() {
 
                 <div className="flex items-center gap-3">
 
-                    <Link to="/signin">
-                        <Button onClick={()=>{}}
+                  
+                        <Button onClick={openSignin}
                             variant="secondary"
                             text="Sign In"
                             className="hidden md:flex"
                         />
-                    </Link>
-
-                    <Link to="/signup">
-                        <Button onClick={()=>{}}
+                    
+                    
+                        <Button onClick={openSignup}
                             variant="primary"
                             text="Get Started"
                         />
-                    </Link>
 
                 </div>
 
             </div>
         </nav>
+
+
      </div>
     </motion.header>
     );

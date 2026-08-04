@@ -3,18 +3,20 @@ import { BrowserRouter, Route,  Routes } from 'react-router-dom'
 import './App.css'
 
 import { Dashboard } from './pages/Dashboard'
-import { Signup } from './pages/Signup'
-import { Signin } from './pages/Signin'
+import { Signup } from './components/Signup'
+import { Signin } from './components/Signin'
 import { Search } from './components/SearchBar'
 import {Toaster} from "react-hot-toast"
 import { Layout } from './pages/Layout'
 import { SharedBrain } from './pages/SharedBrain'
 import { Landing } from './pages/Landing'
+import { AuthProvider } from './context/AuthContext'
 
   function App() {
     return <div className='bg-transparent h-screen'>
       <Toaster position='top-center' />
-  <BrowserRouter>
+ <AuthProvider>
+   <BrowserRouter>
   <Routes>
     <Route element={<Landing/>} path='/'/>
 <Route element={<Layout/>}>
@@ -22,11 +24,11 @@ import { Landing } from './pages/Landing'
         <Route path='/search' element={
       <Search/>}/>
 </Route>
-    <Route path='/signup' element={<Signup/>}/>
-    <Route path='/signin' element={<Signin/>}/>
+   
     <Route path='/shared/:hash' element={<SharedBrain/>}/>
 
     </Routes></BrowserRouter>
+ </AuthProvider>
     </div>
 }
 

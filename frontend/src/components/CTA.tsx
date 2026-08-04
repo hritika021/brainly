@@ -2,7 +2,9 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "../components/Button"; 
 import {motion} from 'motion/react'
 import { container, fadeUp } from "./Hero";
+import { useAuth } from "../context/AuthContext";
 export function CTA() {
+  const {openSignup}=useAuth()
   return (
     <motion.section variants={container}   initial="hidden"
   whileInView="visible"
@@ -33,7 +35,9 @@ export function CTA() {
             </motion.p>
 
             <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-<motion.button variants={fadeUp} className='flex items-center bg-[#df5983]  px-6 text-white py-4 rounded-lg font-[Inter] text-xl'>
+<motion.button
+onClick={openSignup}
+variants={fadeUp} className='flex items-center bg-[#df5983]  px-6 text-white py-4 rounded-lg font-[Inter] text-xl'>
                 Get Started
                 <ArrowRight
                   className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
