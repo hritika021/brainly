@@ -8,9 +8,7 @@ import User from '../models/userModel.js';
 const router=express.Router();
 
 router.post("/content",authMiddleware, async(req,res)=>{
-    console.log("Hit the content route");
-    //@ts-ignore
-    console.log("REQ.User.Id: ",req.userId)
+  
 const link=req.body.link;
 const type=req.body.type;
 const title=req.body.title
@@ -88,6 +86,7 @@ if(share){
 res.json({msg:"Share link updated"   })
 })
 
+
 router.get('/brain/:shareLink', async(req,res)=>{
     const hash=req.params.shareLink;
     const link=await Link.findOne({hash:hash})
@@ -115,5 +114,46 @@ res.json({
 
     
 })
+
+
+router.get('/search', authMiddleware, async(req,res)=>{
+    const filter=req.query.filter as string
+    const content=await Content.find({
+        //@ts-ignore
+        userId:req.userId,
+        title:{
+            $regex:filter,
+             $options: "i",
+        }
+
+    })
+
+    res.json({
+        content:content.map((item)=>({
+            _id:item._id,
+            link:item.link,
+            type:item.type,
+            title:item.title
+        }))
+    })
+})
  
+router.get("/filter", authMiddleware, async (req, res) => {
+    const type = req.query.type as string;
+    
+    const content = await Content.find({
+        //@ts-ignore
+        userId:req.userId,
+        type,
+    });
+
+    res.json({
+        content: content.map((item) => ({
+            _id: item._id,
+            title: item.title,
+            type: item.type,
+            link: item.link,
+        })),
+    });
+});
 export default router
