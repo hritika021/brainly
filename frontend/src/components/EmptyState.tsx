@@ -1,6 +1,6 @@
 import {motion} from 'motion/react'
 import folder from '../assets/fileIllustration.webp'
-import type React from 'react'
+
 interface openModal{
     openModal:()=>void
 }

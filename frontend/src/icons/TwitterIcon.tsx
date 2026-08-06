@@ -1,8 +1,8 @@
-import { faTwitter, faXTwitter } from "@fortawesome/free-brands-svg-icons"
-import { faX } from "@fortawesome/free-solid-svg-icons"
+import {faXTwitter } from "@fortawesome/free-brands-svg-icons"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-export const TwitterIcon=({className}:{className?:string})=>{
+export const TwitterIcon=()=>{
 
 return (
 <div>

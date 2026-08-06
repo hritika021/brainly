@@ -50,7 +50,7 @@ return (
           viewport={{once:true}}
           transition={{
               duration: 1.2,
-    ease: [0.16, 1, 0.3, 1],
+    ease: [0.16, 1, 0.3, 1] as const,
           }}
           style={{ transformOrigin: "left" }}
           
@@ -71,7 +71,7 @@ whileInView={{ opacity: 1, scale: 1 }}
 transition={{
   delay: 0.2+index*0.25,
   duration: 0.35,
-  ease: [0.34, 1.56, 0.64, 1],
+  ease: [0.34, 1.56, 0.64, 1] as const,
 }}
 
 viewport={{once:true}}

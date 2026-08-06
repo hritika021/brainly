@@ -1,4 +1,4 @@
-import {motion, scale} from 'motion/react'
+import {motion} from 'motion/react'
 
 interface Button{
 text:string,

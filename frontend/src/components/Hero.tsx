@@ -1,11 +1,11 @@
-import { ArrowRight, Bookmark, CheckCircle, FolderOpen, Link2, Lock, Play, Sparkle, Sparkles } from "lucide-react";
+import { ArrowRight, Bookmark, CheckCircle, FolderOpen, Link2, Lock, Play, Sparkles } from "lucide-react";
 import { FloatingIcon } from "./FloatingIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Feature } from "./Feature";
-import dashboard from '../assets/dashboard.png'  
+import dashboard from '../assets/dashboard.webp'  
 import {motion} from 'motion/react'
-import { useState } from "react";
+
 import { useAuth } from "../context/AuthContext";
 
   export const fadeUp = {
@@ -18,7 +18,7 @@ import { useAuth } from "../context/AuthContext";
     y: 0,
     transition: {
       duration: 1.0,
-   ease: [0.16, 1, 0.3, 1],
+   ease: [0.16, 1, 0.3, 1] as const,
     },
   },
 };
@@ -42,7 +42,7 @@ export const container = {
   },
 };
 export function Hero(){
-const {openSignin}=useAuth();
+
 const {openSignup}=useAuth()
     return (
       

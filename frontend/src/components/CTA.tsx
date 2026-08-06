@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { Button } from "../components/Button"; 
+ 
 import {motion} from 'motion/react'
 import { container, fadeUp } from "./Hero";
 import { useAuth } from "../context/AuthContext";

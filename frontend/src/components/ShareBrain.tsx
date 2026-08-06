@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import toast from "react-hot-toast";
 import { CopyIcon } from "lucide-react";
 
-export const ShareBrain=({open,onClose,shareBrain,text}:{shareBrain:(share:boolean)=>Promise<string>,text:string,open:boolean ,onClose:()=>void})=>{
+export const ShareBrain=({open,onClose,shareBrain}:{shareBrain:(share:boolean)=>Promise<string>,text:string,open:boolean ,onClose:()=>void})=>{
     const [shareEnabled,setShareEnabled]=useState(false);
     const [shareLink,setShareLink]=useState("");
     const [copied,setCopied]=useState(false);

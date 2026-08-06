@@ -5,7 +5,7 @@ import { BACKEND_URL } from "../config"
 import {motion} from 'motion/react'
 import {toast} from "react-hot-toast"
 import axios from "axios"
-import { useMediaQuery } from "react-responsive";
+
 import { ExternalLink } from "lucide-react"
 
 
@@ -25,7 +25,7 @@ interface Card{
 export const Card=(props:Card)=>{
   const [deleting,setDeleting]=useState(false);
   const isTwitter=props.type==="twitter";
-  const isDesktop=useMediaQuery({minWidth:1024})
+
   useEffect(() => {
 
       //@ts-ignore

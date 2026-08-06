@@ -2,7 +2,7 @@
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "../components/Sidebar";
 import { useState } from "react";
-import { Hamburger, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 
 

@@ -1,5 +1,5 @@
 import { Input } from "./Input"
-import { CrossIcon } from "../icons/CrossIcon"
+
 import { useRef, useState } from "react";
 import axios from "axios";
 import {motion} from 'motion/react'
@@ -116,7 +116,7 @@ finally{
 whileTap={{
     scale: 0.97
 }} className={`${loading?"bg-pink-300":""} bg-[#dd5781] brightness-105 hover:brightness-100
- text-white  font-[Inter]  w-full  mt-5 rounded-md p-2`} onClick={handleSignup}>{loading?"Creating Account":"Create Account..."}</motion.button>
+ text-white  font-[Inter]  w-full  mt-5 rounded-md p-2`} onClick={handleSignup}>{loading?"Creating Account...":"Create Account"}</motion.button>
 <span className="text-gray-700 flex-co font-[Inter] items-center  flex md:flex-row justify-center mt-3">
     Already have an account?
     <span onClick={openSignin} className="text-pink-500 font-[Inter] hover:underline ml-1 flex justify-center"> Sign in</span></span>

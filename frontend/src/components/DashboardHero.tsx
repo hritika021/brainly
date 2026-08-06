@@ -1,8 +1,8 @@
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Book, BookOpen, FileText, Play } from "lucide-react"
+import { Book,FileText, Play } from "lucide-react"
 import { HeroBadge } from "./HeroBadge"
-import { color } from "motion/react"
+
 
 interface HeroProps{
     totalResources:number,

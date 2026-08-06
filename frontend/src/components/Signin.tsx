@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Input } from "./Input"
-import { CrossIcon } from "../icons/CrossIcon"
-import { Link, useNavigate } from "react-router-dom";
+
+import {useNavigate } from "react-router-dom";
 
 
 import axios from "axios";

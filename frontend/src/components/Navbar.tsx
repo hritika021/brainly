@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 import { Brain } from "lucide-react";
 import { Button } from "./Button";
-import {animate, motion} from 'motion/react'
+import { motion} from 'motion/react'
 
-import { Signin } from "./Signin";
+
 import { useAuth } from "../context/AuthContext";
 
 export function Navbar() {

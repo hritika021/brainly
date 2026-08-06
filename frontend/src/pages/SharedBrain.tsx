@@ -4,11 +4,10 @@ import { BACKEND_URL } from "../config";
 import { useEffect, useState } from "react";
 import { Card } from "../components/Card";
 import { useContent } from "../hooks/useContent";
-import { Book, BookA, BookAIcon, BookOpen, BookOpenCheck, FileText, Newspaper, Play, Video } from "lucide-react";
-import { YoutubeIcon } from "../icons/YoutubeIcon";
-import { TwitterIcon } from "../icons/TwitterIcon";
+import { Book, BookOpen,FileText,Play,  } from "lucide-react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import {faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FilterButton } from "../components/ShareButton";
 import type { Content } from "../components/content";
 import { AnimatePresence,motion } from "motion/react";

@@ -3,9 +3,9 @@ import axios from "axios";
 import { CrossIcon } from "../icons/CrossIcon";
 import { useRef,useState } from "react";
 import { BACKEND_URL } from "../config";
-import { useNavigate } from "react-router-dom";
+
 import { toast } from "react-hot-toast";
-import {motion,AnimatePresence} from "motion/react"
+import {motion} from "motion/react"
 import {Loader2} from "lucide-react"
 
 
@@ -71,7 +71,7 @@ onClose();
     }
 }
 
-const navigate=useNavigate();
+
     return (
         <div className="z-50 fixed inset-0  flex items-center justify-center p-4 ">
         

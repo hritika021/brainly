@@ -3,8 +3,7 @@ import { BrowserRouter, Route,  Routes } from 'react-router-dom'
 import './App.css'
 
 import { Dashboard } from './pages/Dashboard'
-import { Signup } from './components/Signup'
-import { Signin } from './components/Signin'
+
 import { Search } from './components/SearchBar'
 import {Toaster} from "react-hot-toast"
 import { Layout } from './pages/Layout'
