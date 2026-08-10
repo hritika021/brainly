@@ -110,7 +110,7 @@ viewport={{once:true}}
                     <motion.h3 variants={fadeUp} className="mt-5 text-xl font-[Inter] font-semibold text-slate-900">
                     {step.title}
                   </motion.h3>
-<motion.p variants={fadeUp} className="mt-3 max-w-xs text-base leading-[23px] text-slate-500">
+<motion.p variants={fadeUp} className="mt-3 max-w-xs text-base leading-6 text-slate-500">
                     {step.description}
                   </motion.p>
 
